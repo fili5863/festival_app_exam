@@ -39,6 +39,7 @@ export function Schedule({ schedule, selectedStage, selectedDay, selectedAct, ba
             /* --------------------------------------- */
             return <div key={stage}>
               <h2 className="uppercase text-4xl md:text-5xl lg:text-7xl text-center my-6 md:my-10 lg:my-20 md:mt-18 lg:mt-30">{stage}</h2>
+              
               <ObjectDay
                 schedule={schedule}
                 stage={...schedule[stage]}

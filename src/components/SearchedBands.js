@@ -21,7 +21,7 @@ export function SearchedBands({
     });
   });
 
-  /* var midArray = schedule.Midgard
+  /*   var midArray = schedule.Midgard
    var VanaArray = schedule.Vanaheim
    var JotunArray = schedule.Jotunheim */
   /* Object.values(midArray).map(day =>  { for (let i = 0; i < day.length; i++) {
