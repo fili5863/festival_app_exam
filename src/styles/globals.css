@@ -52,7 +52,22 @@ p {
   color: #f9f01f;
 }
 
-@media screen and (min-width: 1280px) {
+.css-11yukd5-MuiTabs-indicator {
+  background-color: #f9f01f;
+}
+
+.css-1pr7u1d-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #f9f01f;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0.5rem 1rem;
+  color: #f9f9f9;
+  border: solid #f9f9f9 2px;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 1024px) {
   .bandcontainer {
     background-size: 166%;
     transition: all 250ms ease-in-out;
