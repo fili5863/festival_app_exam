@@ -133,7 +133,7 @@ export default function Product({ bandData, scheduleData }) {
 
   const action = (
     <>
-      <Anchor href="personalprogram">
+      <Anchor href="../personalprogram">
         <Button color="success" size="small">
           See Personal Program
         </Button>
