@@ -29,9 +29,11 @@ export default function PersonalProgram({ schedule, bands }) {
   const handleDialogKeep = () => {
     setDialogOpen([false, ""]);
   };
-  const handleDialogRemove = (band) => {
+  const handleDialogRemove = () => {
+    console.log("handleDialogRemove")
+    console.log("band", dialogOpen[1])
+    removeBand(dialogOpen[1])
     setDialogOpen([false, ""]);
-    removeBand(band)
   };
 
   // Useeffect to get data down, from local storage 
@@ -49,7 +51,11 @@ export default function PersonalProgram({ schedule, bands }) {
 
   //Function that listens to favourites and removes from list if they are disabled from person program
   function removeBand(bandName) {
-    const filteredList = favourites.filter((band) => band.name !== bandName);
+    console.log("TheFiltering")
+    console.log("bandName", bandName)
+    console.log("favourites", favourites)
+    const filteredList = favourites.filter((band) => band !== bandName);
+    console.log("filteredList", filteredList)
     setFavourites(filteredList)
     const newUpdatedLocal = filteredList.map((band) => band + "/");
     const NULJSON = JSON.stringify(newUpdatedLocal);
@@ -79,7 +85,9 @@ export default function PersonalProgram({ schedule, bands }) {
       <title>Personal Program</title>
     </Head>
     <div className="max-w-screen-xl my-32 m-auto bg-gradient-to-b from-color-black to-color-blue">
-      <h1 className="uppercase text-center text-9xl">Program</h1>
+      <h1 className="uppercase text-center text-9xl">Personal Program</h1>
+      <h3 className="text-center mt-20">We collected all your favourite bands, in your own personal program below.</h3>
+      <h3 className="text-center mt-5">Regret adding a band? Press the heart to remove them from your personal program.</h3>
       <TextField onChange={handleChange}></TextField>
       <FilterButtonsStage schedule={schedule} onClick={handleStageClick} />
       <FilterButtonsDay schedule={schedule} onClick={handleDayClick} />
@@ -173,7 +181,7 @@ function Schedule({ schedule, selectedStage, selectedDay, selectedAct, bands, ha
     <div className="schedule">
       {/* Denne function gør at vi kan filtrere på hvilke scener der skal vises */}
       {Object.keys(schedule)
-        .filter(stage => !selectedStage || stage === selectedStage)
+        .filter(stage => (!selectedStage || stage === selectedStage))
         .map(stage => {
           if(selectedStage === (stage)) { 
 /* --------------------------------------- */
@@ -257,7 +265,7 @@ function ObjectBand({ days, selectedAct, bands, handleDialogClickOpen, favourite
 const [checked, setChecked] = React.useState(true)
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
+    setChecked(true);
   };
   
 
@@ -289,11 +297,10 @@ const [checked, setChecked] = React.useState(true)
       <div className="iconContainer absolute top-5 right-5 w-3 h-3 bg-color-yellow p-5 rounded-full flex items-center justify-center">
       <Checkbox
       onClick={() => handleDialogClickOpen(band.act)}
-      checked={checked}
-      onChange={handleChange}
+      defaultChecked={true}
       value={band.act}
       className="p-0"
-      icon={<FavoriteBorder />}
+      icon={<Favorite />}
       checkedIcon={<Favorite />}
       color="error"
       sx={{
