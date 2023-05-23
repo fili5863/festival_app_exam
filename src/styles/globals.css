@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white: #f9f9f9;
+  --black: #1d1c29;
+  --font-josefin: "Josefin Sans", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+}
+h1 {
+  font-family: var(--font-playfair);
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 3rem;
+  color: var(--white);
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  position: relative;
+  text-shadow: 1px 1px 0 var(--white), -1px -1px 0 var(--white), 1px -1px 0 var(--white),
+    -1px 1px 0 var(--white), 1px 1px 0 var(--white);
+  color: var(--black);
+  font-family: var(--font-josefin);
+}
+
+h3,
+p {
+  font-family: var(--font-josefin);
+  color: var(--white);
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+p {
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+/* span.timeslot {
+  transition: visibility 250ms ease-in-out;
+} */
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+  color: #f9f01f;
+}
+
+@media screen and (min-width: 1280px) {
+  .bandcontainer {
+    background-size: 166%;
+    transition: all 250ms ease-in-out;
+    background-position: center;
+  }
+  .bandcontainer:hover {
+    background-size: 178%;
+  }
+
+  .bandcontainer:hover span.timeslot {
+    opacity: 1;
+  }
+}
+
+.MuiSvgIcon-root {
+  fill: var(--black);
+}
