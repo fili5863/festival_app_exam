@@ -11,7 +11,9 @@ function Navbar() {
         <NavLogo className="w-24 h-auto" />
       </Link>
       <div className="flex justify-center">
-        <Button className="rounded-none font-sans font-bold border-2 border-solid place-self-center border-color-yellow h-10 px-10 text-color-yellow hover:bg-color-yellow hover:text-color-black">BUY TICKETS</Button>
+        <Button className="rounded-none font-sans font-bold border-2 border-solid place-self-center border-color-yellow h-10 px-10 text-color-yellow hover:bg-color-yellow hover:text-color-black">
+          BUY TICKETS
+        </Button>
         <TemporaryDrawer className="flex" />
       </div>
     </div>
