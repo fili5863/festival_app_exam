@@ -20,6 +20,8 @@ export default function PersonalProgram({ schedule, bands }) {
   const [selectedStage, setSelectedStage] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedAct, setSelectedAct] = useState(null);
+  const [filteredSchedule, setFilteredSchedule] = useState({"Midgard": {}, "Vanaheim": {}, "Jotunheim":{} })
+  const [favStages, setFavStages] = useState([])
   const [showTime, setShowTime] = useState(false)
 
 //HAndle the dialog when wanting to remove from favourite
@@ -43,11 +45,51 @@ export default function PersonalProgram({ schedule, bands }) {
 
     if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
-        setFavourites(currentToArray)
-      // })
-      // setFavourites(currentToArray);
+        // setFavourites(currentToArray)
+        console.log("curToArr", currentToArray);
+        console.log("schedule?",schedule)
+        
+        const a1 = schedule.Midgard
+
+        for (let i = 0; i < Object.keys(a1).length -1 ; i++) {
+
+          let day;
+
+          if (i === 0) {
+            day = "mon"
+          } else if ( i === 1) {
+            day = "tue"
+          } else if ( i === 2) {
+            day = "wed"
+          } else if ( i === 3) {
+            day = "thu"
+          } else if ( i === 4) {
+            day = "fri"
+          } else if ( i === 5) {
+            day = "sat"
+          } else if ( i === 6) {
+            day = "sun"
+          }
+
+          console.log(day
+            );
+
+          // for (let j = 0; j < Object.keys(a1).length -1; j++) {
+
+          //   console.log(a1.day)
+
+          // // const there = a1.day[j].some(item=>currentToArray.includes(item))
+          // // if ( there === true) {
+          // //   console.log(a1.day[j]);
+          // }
+
+        }
+        // const a2 = a1.fri
+        // console.log(typeof a2)
+    
+        }
     }
-  }, []);
+  , []);
 
   //Function that listens to favourites and removes from list if they are disabled from person program
   function removeBand(bandName) {
