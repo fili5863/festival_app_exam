@@ -14,12 +14,14 @@ import { useState, useEffect } from "react";
 import { ButtonBase, Skeleton, TextField, Checkbox } from "@mui/material";
 
 export default function PersonalProgram({ schedule, bands }) {
-  console.log("Schedule", schedule);
-  const [favourites, setFavourites] = useState();
+  // console.log("Schedule", schedule);
+  const [favourites, setFavourites] = useState("");
   const [dialogOpen, setDialogOpen] = React.useState([false, ""])
   const [selectedStage, setSelectedStage] = useState(null);
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedAct, setSelectedAct] = useState(null);
+  const [filteredSchedule, setFilteredSchedule] = useState({"Midgard": {}, "Vanaheim": {}, "Jotunheim":{} })
+  const [favStages, setFavStages] = useState([])
   const [showTime, setShowTime] = useState(false)
 
 //HAndle the dialog when wanting to remove from favourite
@@ -29,7 +31,10 @@ export default function PersonalProgram({ schedule, bands }) {
   const handleDialogKeep = () => {
     setDialogOpen([false, ""]);
   };
-  const handleDialogRemove = (band) => {
+  const handleDialogRemove = () => {
+    console.log("handleDialogRemove")
+    console.log("band", dialogOpen[1])
+    removeBand(dialogOpen[1])
     setDialogOpen([false, ""]);
   };
 
@@ -40,32 +45,65 @@ export default function PersonalProgram({ schedule, bands }) {
 
     if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
-      console.log("CueToAr", currentToArray);
-      // let favouriteArray = []
-      // currentToArray.forEach(bandName => {
-      //   for (let i = 0; i < bands.length; i++) {
-      //     if (bands[i].name === bandName) {
-      //       console.log(`Bingo! - ${bandName}`)
-      //       favouriteArray.push(bands[i])
-      //     }
-      //   }
-        setFavourites(currentToArray)
-      // })
-      // setFavourites(currentToArray);
+        // setFavourites(currentToArray)
+        console.log("curToArr", currentToArray);
+        console.log("schedule?",schedule)
+        
+        const a1 = schedule.Midgard
+
+        for (let i = 0; i < Object.keys(a1).length -1 ; i++) {
+
+          let day;
+
+          if (i === 0) {
+            day = "mon"
+          } else if ( i === 1) {
+            day = "tue"
+          } else if ( i === 2) {
+            day = "wed"
+          } else if ( i === 3) {
+            day = "thu"
+          } else if ( i === 4) {
+            day = "fri"
+          } else if ( i === 5) {
+            day = "sat"
+          } else if ( i === 6) {
+            day = "sun"
+          }
+
+          console.log(day
+            );
+
+          // for (let j = 0; j < Object.keys(a1).length -1; j++) {
+
+          //   console.log(a1.day)
+
+          // // const there = a1.day[j].some(item=>currentToArray.includes(item))
+          // // if ( there === true) {
+          // //   console.log(a1.day[j]);
+          // }
+
+        }
+        // const a2 = a1.fri
+        // console.log(typeof a2)
+    
+        }
     }
-  }, []);
+  , []);
 
   //Function that listens to favourites and removes from list if they are disabled from person program
   function removeBand(bandName) {
-    const filteredList = favourites.filter((band) => band.name !== bandName);
+    console.log("TheFiltering")
+    console.log("bandName", bandName)
+    console.log("favourites", favourites)
+    const filteredList = favourites.filter((band) => band !== bandName);
+    console.log("filteredList", filteredList)
+    setFavourites(filteredList)
     const newUpdatedLocal = filteredList.map((band) => band + "/");
-    console.log("TheFiltering", newUpdatedLocal);
     const NULJSON = JSON.stringify(newUpdatedLocal);
     const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
-    console.log("NULJSON2 - 2", NULJSON2);
     localStorage.setItem("favourites", NULJSON2);
   }
-
 
 
     function handleStageClick(stage) {
@@ -74,12 +112,12 @@ export default function PersonalProgram({ schedule, bands }) {
 
   function handleDayClick(day) {
     setSelectedDay(day);
-    console.log(day);
+    // console.log(day);
   }
 
   function handleChange(e) {
     setSelectedAct(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
 
 
@@ -89,12 +127,21 @@ export default function PersonalProgram({ schedule, bands }) {
       <title>Personal Program</title>
     </Head>
     <div className="max-w-screen-xl my-32 m-auto bg-gradient-to-b from-color-black to-color-blue">
-      <h1 className="uppercase text-center text-9xl">Program</h1>
+      <h1 className="uppercase text-center text-9xl">Personal Program</h1>
+      <h3 className="text-center mt-20">We collected all your favourite bands, in your own personal program below.</h3>
+      <h3 className="text-center mt-5">Regret adding a band? Press the heart to remove them from your personal program.</h3>
       <TextField onChange={handleChange}></TextField>
       <FilterButtonsStage schedule={schedule} onClick={handleStageClick} />
       <FilterButtonsDay schedule={schedule} onClick={handleDayClick} />
       <button className="text-color-white p-2 border-color-white border-solid" onClick={() => console.log(favourites)}>See Fav</button>
+      {favourites === null ? <>
+      <Skeleton variant="rectangular" width={210} height={60} />
+      <Skeleton variant="rectangular" width={210} height={60} />
+      <Skeleton variant="rectangular" width={210} height={60} />
+      </>
+      : 
       <Schedule schedule={schedule} selectedStage={selectedStage} selectedDay={selectedDay} selectedAct={selectedAct} bands={bands} handleDialogClickOpen={handleDialogClickOpen} favourites={favourites} />
+      }
       <Dialog
         open={dialogOpen[0]}
         onClose={handleDialogKeep}
@@ -102,7 +149,7 @@ export default function PersonalProgram({ schedule, bands }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {`Remove ${dialogOpen[1]} from favourites?`}
+          {`Remove ${dialogOpen[1]}, from favourites?`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -112,8 +159,8 @@ export default function PersonalProgram({ schedule, bands }) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogKeep}>Keep as favourites</Button>
-          <Button onClick={handleDialogRemove} autoFocus>
+          <Button variant="outlined" color="success" onClick={handleDialogKeep}>Keep as favourites</Button>
+          <Button variant="outlined" color="error" onClick={handleDialogRemove} autoFocus>
             Remove from favourites
           </Button>
         </DialogActions>
@@ -176,7 +223,7 @@ function Schedule({ schedule, selectedStage, selectedDay, selectedAct, bands, ha
     <div className="schedule">
       {/* Denne function gør at vi kan filtrere på hvilke scener der skal vises */}
       {Object.keys(schedule)
-        .filter(stage => !selectedStage || stage === selectedStage)
+        .filter(stage => (!selectedStage || stage === selectedStage))
         .map(stage => {
           if(selectedStage === (stage)) { 
 /* --------------------------------------- */
@@ -234,7 +281,7 @@ function ObjectDay({stage, selectedDay, selectedAct, bands, handleDialogClickOpe
   //   /* Denne function gør at vi kan filtrere på hvilken dag der skal vises program for */
   // }
   return Object.keys(stage)
-    .filter(day => !selectedDay || day === selectedDay)
+    .filter(day => (!selectedDay || day === selectedDay))
     .map(day => {
 {/* --------------------------------------- */}
      if (selectedDay === (day) ){
@@ -260,7 +307,7 @@ function ObjectBand({ days, selectedAct, bands, handleDialogClickOpen, favourite
 const [checked, setChecked] = React.useState(true)
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
+    setChecked(true);
   };
   
 
@@ -271,9 +318,6 @@ const [checked, setChecked] = React.useState(true)
       }
     }
   }
-
-
-
 
   /* Baggrundsbillede */
     const backgroundImage = (name) => {
@@ -286,7 +330,7 @@ const [checked, setChecked] = React.useState(true)
     }
   };
 /* Søgefunktion */
-  return Object.values(days).filter(band => band.act.toLowerCase() !== "break" && (!selectedAct || band.act.toLowerCase().includes(selectedAct))).map(band => (
+  return Object.values(days).filter(band => band.act.toLowerCase() !== "break" && (!selectedAct || band.act.toLowerCase().includes(selectedAct)) && favourites.includes(band.act)).map(band => (
     /* --------------------------------------- */
     <div key={band.act} 
     style={{ backgroundImage: backgroundImage(band.act) }} 
@@ -295,11 +339,10 @@ const [checked, setChecked] = React.useState(true)
       <div className="iconContainer absolute top-5 right-5 w-3 h-3 bg-color-yellow p-5 rounded-full flex items-center justify-center">
       <Checkbox
       onClick={() => handleDialogClickOpen(band.act)}
-      checked={checked}
-      onChange={handleChange}
+      defaultChecked={true}
       value={band.act}
       className="p-0"
-      icon={<FavoriteBorder />}
+      icon={<Favorite />}
       checkedIcon={<Favorite />}
       color="error"
       sx={{

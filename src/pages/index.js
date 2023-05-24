@@ -27,15 +27,15 @@ export default function MyApp({ bands }) {
           </Button>
         </div>
         <div className="m-auto h-0.5 w-4/5 max-w-3/4 bg-color-white"></div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-6">
           <h1 className="mb-16 text-center">PROGRAM</h1>
-          <div className="flex flex-row gap-6 sm:gap-12 md:gap-16  justify-center">
+          <div className="flex flex-row flex-wrap gap-3 sm:gap-12 md:gap-6 lg:gap-10  justify-center">
             <BandList1 bands={bands} />
           </div>
-          <div className="flex flex-row gap-3 sm:gap-12 md:gap-16 lg:gap-24 justify-center">
+          <div className="flex flex-row flex-wrap gap-3 sm:gap-12 md:gap-6 lg:gap-10 justify-center">
             <BandList2 bands={bands} />
           </div>
-          <div className="flex flex-row gap-2 sm:gap-12 md:gap-16 lg:gap-12 justify-center">
+          <div className="flex flex-row flex-wrap gap-2 sm:gap-3 md:gap-6 lg:gap-10 justify-center">
             <BandList3 bands={bands} />
           </div>
         </div>
@@ -78,7 +78,7 @@ function BandList3(props) {
 function Band(band) {
   return (
     <>
-      <h2 className="text-center uppercase text-4xl sm:text-5xl md:text-7xl lg:text-8xl">
+      <h2 className="text-center uppercase text-4xl sm:text-6xl md:text-7xl lg:text-8xl">
         <Anchor href={`/bands/${band.slug}`}>{band.name}</Anchor>
       </h2>
     </>
@@ -87,7 +87,7 @@ function Band(band) {
 function Band2(band) {
   return (
     <>
-      <h3 className="text-center uppercase text-xl sm:text-2xl md:text-4xl lg:text-5xl text-color-white">
+      <h3 className="text-center uppercase text-lg sm:text-4xl md:text-5xl lg:text-6xl text-color-white">
         <Anchor href={`/bands/${band.slug}`}>{band.name}</Anchor>
       </h3>
     </>
@@ -96,7 +96,7 @@ function Band2(band) {
 function Band3(band) {
   return (
     <>
-      <h3 className="text-center uppercase text-base sm:text-2xl md:text-4xl lg:text-4xl text-color-white">
+      <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white">
         <Anchor href={`/bands/${band.slug}`}>{band.name}</Anchor>
       </h3>
     </>
