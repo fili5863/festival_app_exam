@@ -45,51 +45,74 @@ export default function PersonalProgram({ schedule, bands }) {
 
     if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
-        // setFavourites(currentToArray)
+        setFavourites(currentToArray)
         console.log("curToArr", currentToArray);
         console.log("schedule?",schedule)
         
-        const a1 = schedule.Midgard
 
-        for (let i = 0; i < Object.keys(a1).length -1 ; i++) {
+        // FROM HERE TO LINE 107 I LOOP THROUGH AND FIND THE TIME SLOTS THAT MATCHES THE LOCAL STORRAGE
+        // BUT I'M STUCK AND KIND FIGURE OUT A WAY TO MAKE A NEW ARRAY WITH THE SCENES, DAYS AND TIMESLOTS THAT WE GET OUT
+        const Midgard = {}
+        const Vanaheim = {}
+        const Jotunheim = {}
+  
+        for ( let k = 0; k < Object.keys(schedule).length; k++) {
+          let stage = "";
 
-          let day;
+          if ( k === 0) {
+            stage = "Midgard"
+          } else if (k === 1) {
+            stage = "Vanaheim"
+          } else if (k === 2) {
+            stage = "Jotunheim"
+          }
+
+        for (let i = 0; i < Object.keys(schedule[stage]).length ; i++) {
+          // console.log(i);
+
+          let day = "";
 
           if (i === 0) {
             day = "mon"
+            // console.log(day);
           } else if ( i === 1) {
             day = "tue"
+            // console.log(day);
           } else if ( i === 2) {
             day = "wed"
+            // console.log(day);
           } else if ( i === 3) {
             day = "thu"
+            // console.log(day);
           } else if ( i === 4) {
             day = "fri"
+            // console.log(day);
           } else if ( i === 5) {
             day = "sat"
+            // console.log(day);
           } else if ( i === 6) {
             day = "sun"
+            // console.log(day);
           }
+          
+          // console.log("schedule", Object.keys(a1[day]).length);
+          
+          // console.log(day);
+          for (let j = 0; j < Object.keys(schedule[stage][day]).length -1; j++) {
 
-          console.log(day
-            );
+            // console.log(schedule[stage][day][j])
+            const there = Object.values(schedule[stage][day][j])
+            // console.log(there);
+            const that = there.some(item=>currentToArray.includes(item))
+            if ( that === true ) {
+              console.log("BINGO", schedule[stage][day][j]);
 
-          // for (let j = 0; j < Object.keys(a1).length -1; j++) {
-
-          //   console.log(a1.day)
-
-          // // const there = a1.day[j].some(item=>currentToArray.includes(item))
-          // // if ( there === true) {
-          // //   console.log(a1.day[j]);
-          // }
-
+          }
+          }
         }
-        // const a2 = a1.fri
-        // console.log(typeof a2)
-    
-        }
+      }
     }
-  , []);
+    }, []);
 
   //Function that listens to favourites and removes from list if they are disabled from person program
   function removeBand(bandName) {
