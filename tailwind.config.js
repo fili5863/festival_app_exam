@@ -19,6 +19,7 @@ module.exports = {
 
     colors: {
       "color-black": "#1D1C29",
+      "color-black-nav": "rgba(29, 28, 41, 0.6)",
       "color-blue": "#102038",
       "color-white": "#F9F9F9",
       "color-green": "#00B88B",
