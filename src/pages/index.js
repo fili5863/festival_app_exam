@@ -3,7 +3,7 @@ import Anchor from "@/components/Anchor";
 import Image from "next/image";
 import Logo from "../components/svgs/logo.png";
 import Button from "@mui/material/Button";
-import config from "../../config";
+import apiConfig from "../../apiConfig";
 // import App from "next/app";
 // import Navbar from "@/components/Navbar";
 // import Checkbox from "@mui/material/Checkbox";
