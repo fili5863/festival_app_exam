@@ -3,7 +3,7 @@ const apiConfig = {
     apiUrl: "http://localhost:8080",
   },
   production: {
-    apiUrl: "https://glitch.com/scratched-bronze-lingonberry",
+    apiUrl: "https://scratched-bronze-lingonberry.glitch.me",
   },
 };
 
