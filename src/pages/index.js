@@ -40,13 +40,13 @@ export default function MyApp({ bands }) {
           <h3 className="mb-16 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
             EXPERIENCE BANDS SUCH AS:
           </h3>
-          <div className="flex flex-row flex-wrap gap-3 sm:gap-12 md:gap-6 lg:gap-10  justify-center">
+          <div className="flex flex-row flex-wrap gap-y-3 gap-x-4 sm:gap-x-8 md:gap-x-12 lg:gap-x-10  justify-center">
             <BandList1 bands={bands} />
           </div>
-          <div className="flex flex-row flex-wrap gap-3 sm:gap-12 md:gap-6 lg:gap-10 justify-center">
+          <div className="flex flex-row flex-wrap gap-y-3 gap-x-2 sm:gap-x-8 md:gap-x-12 lg:gap-x-10 justify-center">
             <BandList2 bands={bands} />
           </div>
-          <div className="flex flex-row flex-wrap gap-2 sm:gap-3 md:gap-6 lg:gap-10 justify-center">
+          <div className="flex flex-row flex-wrap gap-y-2 gap-x-2 sm:gap-x-5 md:gap-x-8 lg:gap-x-10 justify-center">
             <BandList3 bands={bands} />
           </div>
         </div>
