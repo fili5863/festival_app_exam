@@ -10,7 +10,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import { useState, useEffect } from "react";
 import { ButtonBase } from "@mui/material";
-import config from "../../config";
+import apiConfig from "../../apiConfig";
 
 export default function MyApp({ bands }) {
   console.log(bands);
@@ -60,7 +60,7 @@ export default function MyApp({ bands }) {
 }
 
 export async function getServerSideProps() {
-  const apiUrl = config[process.env.NODE_ENV].apiUrl;
+  const apiUrl = apiConfig[process.env.NODE_ENV].apiUrl;
   const api = `${apiUrl}/bands`;
   const res = await fetch(api);
   const data = await res.json();

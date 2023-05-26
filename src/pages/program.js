@@ -9,7 +9,7 @@ import { BadgeRounded } from "@mui/icons-material";
 import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
 import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
 import { Schedule } from "../components/Schedule";
-import config from "../../config";
+import apiConfig from "../../apiConfig";
 
 export default function Program({ schedule, bands }) {
   // console.log(schedule);
@@ -196,7 +196,7 @@ export default function Program({ schedule, bands }) {
 }
 
 export async function getServerSideProps() {
-  const apiUrl = config[process.env.NODE_ENV].apiUrl;
+  const apiUrl = apiConfig[process.env.NODE_ENV].apiUrl;
   // const band = context.params.band;
 
   // Fetch post data from API using the ID parameter

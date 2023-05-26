@@ -1,4 +1,4 @@
-const config = {
+const apiConfig = {
   development: {
     apiUrl: "http://localhost:8080",
   },
@@ -7,4 +7,4 @@ const config = {
   },
 };
 
-export default config;
+export default apiConfig;

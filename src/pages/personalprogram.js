@@ -13,7 +13,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState, useEffect } from "react";
 import { ButtonBase, Skeleton, TextField, Checkbox } from "@mui/material";
-import config from "../../config";
+import apiConfig from "../../apiConfig";
 
 export default function PersonalProgram({ schedule, bands }) {
   // console.log("Schedule", schedule);
@@ -355,7 +355,7 @@ const [checked, setChecked] = React.useState(true)
   }
     
 export async function getServerSideProps() {
-  const apiUrl = config[process.env.NODE_ENV].apiUrl;
+  const apiUrl = apiConfig[process.env.NODE_ENV].apiUrl;
   {/* const band = context.params.band; */}
 
   {/* Fetch post data from API using the ID parameter */}

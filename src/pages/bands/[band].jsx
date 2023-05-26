@@ -10,7 +10,7 @@ import { Youtube } from "@/components/svgs";
 import { ArrowLeft } from "@/components/svgs";
 import { TextField, Checkbox, Snackbar, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
-import config from "../../../config";
+import apiConfig from "../../../apiConfig";
 
 import "material-symbols";
 
@@ -328,7 +328,7 @@ function goBack() {
 }
 
 export async function getServerSideProps(context) {
-  const apiUrl = config[process.env.NODE_ENV].apiUrl;
+  const apiUrl = apiConfig[process.env.NODE_ENV].apiUrl;
   const band = context.params.band;
 
   // Fetch post data from API using the ID parameter
