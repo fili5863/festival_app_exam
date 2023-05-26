@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Anchor from "@/components/Anchor";
+import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
+import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
 import Button from "@mui/material/Button";
 import Navbar from "@/components/Navbar";
 import React from "react";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -18,10 +19,10 @@ export default function PersonalProgram({ schedule, bands }) {
   const [favourites, setFavourites] = useState("");
   const [dialogOpen, setDialogOpen] = React.useState([false, ""])
   const [selectedStage, setSelectedStage] = useState(null);
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedAct, setSelectedAct] = useState(null);
-  const [filteredSchedule, setFilteredSchedule] = useState({"Midgard": {}, "Vanaheim": {}, "Jotunheim":{} })
-  const [favStages, setFavStages] = useState([])
+  const [selectedDay, setSelectedDay] = useState("");
+  const [selectedAct, setSelectedAct] = useState("");
+  // const [filteredSchedule, setFilteredSchedule] = useState({"Midgard": {}, "Vanaheim": {}, "Jotunheim":{} })
+  // const [favStages, setFavStages] = useState([])
   const [showTime, setShowTime] = useState(false)
 
 //HAndle the dialog when wanting to remove from favourite
@@ -45,51 +46,70 @@ export default function PersonalProgram({ schedule, bands }) {
 
     if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
-        // setFavourites(currentToArray)
+        setFavourites(currentToArray)
         console.log("curToArr", currentToArray);
         console.log("schedule?",schedule)
         
-        const a1 = schedule.Midgard
 
-        for (let i = 0; i < Object.keys(a1).length -1 ; i++) {
+        // FROM HERE TO LINE 104 I LOOP THROUGH AND FIND THE TIME SLOTS THAT MATCHES THE LOCAL STORRAGE
+        // BUT I'M STUCK AND KIND FIGURE OUT A WAY TO MAKE A NEW ARRAY WITH THE SCENES, DAYS AND TIMESLOTS THAT WE GET OUT
+        for ( let k = 0; k < Object.keys(schedule).length; k++) {
+          let stage = "";
 
-          let day;
+          if ( k === 0) {
+            stage = "Midgard"
+          } else if (k === 1) {
+            stage = "Vanaheim"
+          } else if (k === 2) {
+            stage = "Jotunheim"
+          }
+
+        for (let i = 0; i < Object.keys(schedule[stage]).length ; i++) {
+          // console.log(i);
+
+          let day = "";
 
           if (i === 0) {
             day = "mon"
+            // console.log(day);
           } else if ( i === 1) {
             day = "tue"
+            // console.log(day);
           } else if ( i === 2) {
             day = "wed"
+            // console.log(day);
           } else if ( i === 3) {
             day = "thu"
+            // console.log(day);
           } else if ( i === 4) {
             day = "fri"
+            // console.log(day);
           } else if ( i === 5) {
             day = "sat"
+            // console.log(day);
           } else if ( i === 6) {
             day = "sun"
+            // console.log(day);
           }
+          
+          // console.log("schedule", Object.keys(a1[day]).length);
+          
+          // console.log(day);
+          for (let j = 0; j < Object.keys(schedule[stage][day]).length -1; j++) {
 
-          console.log(day
-            );
+            // console.log(schedule[stage][day][j])
+            const there = Object.values(schedule[stage][day][j])
+            // console.log(there);
+            const that = there.some(item=>currentToArray.includes(item))
+            if ( that === true ) {
+              console.log("BINGO", schedule[stage][day].keys());
 
-          // for (let j = 0; j < Object.keys(a1).length -1; j++) {
-
-          //   console.log(a1.day)
-
-          // // const there = a1.day[j].some(item=>currentToArray.includes(item))
-          // // if ( there === true) {
-          // //   console.log(a1.day[j]);
-          // }
-
+          }
+          }
         }
-        // const a2 = a1.fri
-        // console.log(typeof a2)
-    
-        }
+      }
     }
-  , []);
+    }, []);
 
   //Function that listens to favourites and removes from list if they are disabled from person program
   function removeBand(bandName) {
@@ -127,13 +147,31 @@ export default function PersonalProgram({ schedule, bands }) {
       <title>Personal Program</title>
     </Head>
     <div className="max-w-screen-xl my-32 m-auto bg-gradient-to-b from-color-black to-color-blue">
-      <h1 className="uppercase text-center text-9xl">Personal Program</h1>
+            <h1 className="uppercase text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+        Program
+      </h1>
       <h3 className="text-center mt-20">We collected all your favourite bands, in your own personal program below.</h3>
       <h3 className="text-center mt-5">Regret adding a band? Press the heart to remove them from your personal program.</h3>
-      <TextField onChange={handleChange}></TextField>
-      <FilterButtonsStage schedule={schedule} onClick={handleStageClick} />
-      <FilterButtonsDay schedule={schedule} onClick={handleDayClick} />
-      <button className="text-color-white p-2 border-color-white border-solid" onClick={() => console.log(favourites)}>See Fav</button>
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col lg:flex-row-reverse justify-center gap-2 lg:mt-10">
+          <TextField
+            className="text-color-yellow w-9/12 place-self-center mt-10 lg:mt-0 lg:w-auto"
+            onChange={handleChange}
+            placeholder="Search for band"
+          ></TextField>
+          <FilterbuttonsStage
+            schedule={schedule}
+            onClick={handleStageClick}
+            selectedAct={selectedAct}
+          />
+        </div>
+        <FilterbuttonsDay
+          schedule={schedule}
+          onClick={handleDayClick}
+          selectedAct={selectedAct}
+          selectedDay={selectedDay}
+        />
+      </div>
       {favourites === null ? <>
       <Skeleton variant="rectangular" width={210} height={60} />
       <Skeleton variant="rectangular" width={210} height={60} />
@@ -170,53 +208,7 @@ export default function PersonalProgram({ schedule, bands }) {
   );
 }
 
-function FilterButtonsStage({ schedule, onClick }) {
-  return (
-    <div className="w-screen">
-      <Button onClick={() => onClick("")}>All</Button>
-      {Object.keys(schedule).map((stage) => (
-        <Button key={stage} onClick={() => onClick(stage)}>
-          {stage}
-        </Button>
-      ))}
-    </div>
-  );
-}
-
-function FilterButtonsDay({ schedule, onClick }) {
-  const days = new Set();
-
-  Object.keys(schedule).map((stage) => {
-    Object.keys(schedule[stage]).map((day) => {
-      days.add(day);
-    });
-  });
-
-  return (
-    <div className="w-screen">
-      <Button onClick={() => onClick("")}>All</Button>
-      {[...days].map((day) => (
-        <Button key={day} onClick={() => onClick(day)}>
-          {day}
-        </Button>
-      ))}
-    </div>
-  );
-}
-
 function Schedule({ schedule, selectedStage, selectedDay, selectedAct, bands, handleDialogClickOpen, favourites }) {
-
-  //   function LocalStorageFavourite(e) {
-  //   console.log(e);
-  //   if (e.target.checked) {
-  //     setSnackOpen([true, e.target.value, `${e.target.value} has been added to favourites.`]);
-  //   }
-  // }
-
-  //   function closeSnack() {
-  //   setSnackOpen([false, "", ""]);
-  // }
-
 
 
   return (
@@ -226,7 +218,7 @@ function Schedule({ schedule, selectedStage, selectedDay, selectedAct, bands, ha
         .filter(stage => (!selectedStage || stage === selectedStage))
         .map(stage => {
           if(selectedStage === (stage)) { 
-/* --------------------------------------- */
+{/* ----------------------------------------- */}
             return <div key={stage}>
             <ObjectDay
               schedule={schedule}
@@ -238,7 +230,7 @@ function Schedule({ schedule, selectedStage, selectedDay, selectedAct, bands, ha
               favourites={favourites}
               />
           </div>} else {
-/* --------------------------------------- */
+{/* ----------------------------------------- */}
             return <div key={stage}>
             <h2 className="uppercase text-8xl text-center my-20 mt-40">{stage}</h2>
             <ObjectDay
@@ -277,22 +269,20 @@ function ObjectDay({stage, selectedDay, selectedAct, bands, handleDialogClickOpe
   }
 }
 
-  // {
-  //   /* Denne function gør at vi kan filtrere på hvilken dag der skal vises program for */
-  // }
+  {/*  Denne function gør at vi kan filtrere på hvilken dag der skal vises program for */}
   return Object.keys(stage)
     .filter(day => (!selectedDay || day === selectedDay))
     .map(day => {
-{/* --------------------------------------- */}
-     if (selectedDay === (day) ){
-      return <div  key={day}>
+{/* ----------------------------------------- */}
+if (selectedDay === (day) ){
+  return <div  key={day}>
         <h3 className="text-5xl uppercase text-center my-16" >{fullDayName(day)}</h3>
         <div key={day} className="bandList grid sm:grid-cols-1 md:grid-cols-2 md:mb-4 lg:grid-cols-3 ">
         <ObjectBand days={...stage[day]} selectedAct={selectedAct} bands={bands} handleDialogClickOpen={handleDialogClickOpen} favourites={favourites} />
         </div>
       </div>
     } else { 
- /* --------------------------------------- */
+      {/* ----------------------------------------- */}
       return <div key={day}>
         <h3 className="text-5xl uppercase text-center mt-28 mb-14" >{fullDayName(day)}</h3>
         <div key={day} className="bandList grid sm:grid-cols-1 md:grid-cols-2 md:mb-4 lg:grid-cols-3">
@@ -319,19 +309,19 @@ const [checked, setChecked] = React.useState(true)
     }
   }
 
-  /* Baggrundsbillede */
+  {/* Baggrundsbillede */}
     const backgroundImage = (name) => {
-     /* console.log(name); */
-    // console.log("bands", bands);
     for (let i = 0; i < bands.length; i++) {
       if (name === bands[i].name) {
         return bands[i].logo.startsWith("https://") ? `url("${bands[i].logo}"` : `url("https://scratched-bronze-lingonberry.glitch.me/logos/${bands[i].logo}")`;
       }
     }
   };
-/* Søgefunktion */
-  return Object.values(days).filter(band => band.act.toLowerCase() !== "break" && (!selectedAct || band.act.toLowerCase().includes(selectedAct)) && favourites.includes(band.act)).map(band => (
-    /* --------------------------------------- */
+
+ {/* Søgefunktion */}
+  return (
+    Object.values(days).filter(band => band.act.toLowerCase() !== "break" && (!selectedAct || band.act.toLowerCase().includes(selectedAct)) && favourites.includes(band.act)).map(band => (
+
     <div key={band.act} 
     style={{ backgroundImage: backgroundImage(band.act) }} 
     className="bandcontainer relative grid items-start justify-items-center bg-cover bg-no-repeat h-96 pb-110 border-b-2 border-color-white last:border-none  md:border-none" >
@@ -339,7 +329,8 @@ const [checked, setChecked] = React.useState(true)
       <div className="iconContainer absolute top-5 right-5 w-3 h-3 bg-color-yellow p-5 rounded-full flex items-center justify-center">
       <Checkbox
       onClick={() => handleDialogClickOpen(band.act)}
-      defaultChecked={true}
+      Checked={true}
+      handleChange={handleChange}
       value={band.act}
       className="p-0"
       icon={<Favorite />}
@@ -359,14 +350,13 @@ const [checked, setChecked] = React.useState(true)
       </span>
       </Anchor>
       </div>
-      /* --------------------------------------- */
-  ))
-    }
+  )))
+  }
     
 export async function getServerSideProps() {
-  // const band = context.params.band;
+  {/* const band = context.params.band; */}
 
-  // Fetch post data from API using the ID parameter
+  {/* Fetch post data from API using the ID parameter */}
 
   const [res1, res2, res3] = await Promise.all([fetch(`http://localhost:8080/bands`), fetch(`http://localhost:8080/schedule`), fetch(`http://localhost:8080/events`)]);
 
@@ -374,7 +364,7 @@ export async function getServerSideProps() {
   const schedule = await res2.json();
   const event = await res3.json();
 
-  // Pass the post data as props to the page
+  {/* Pass the post data as props to the page */}
   return {
     props: {
       bands,
