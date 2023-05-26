@@ -43,7 +43,7 @@ export default function TemporaryDrawer() {
             disablePadding
           >
             <ListItemButton>
-              <Anchor href={`./${text.toLowerCase()}`}>
+              <Anchor href={`../${text.toLowerCase()}`}>
                 <p className="navHover text-3xl font-bold uppercase text-color-white">{text}</p>
               </Anchor>
             </ListItemButton>
