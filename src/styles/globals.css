@@ -8,7 +8,6 @@
   --yellow: #f9f01f;
   --font-josefin: "Josefin Sans", sans-serif;
   --font-playfair: "Playfair Display", serif;
-  --font-work: "Work Sans", sans-serif;
 }
 h1 {
   font-family: var(--font-playfair);
@@ -20,17 +19,22 @@ h1 {
 
 h2 {
   font-size: 3rem;
-  font-weight: 900;
+  font-weight: 700;
   position: relative;
-
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px white;
   color: var(--white);
-  font-family: Arial black;
+  font-family: "Gill Sans", sans-serif;
   transform-origin: left;
 }
 
-h3,
+h3 {
+  font-family: "Gill Sans", sans-serif;
+  color: var(--white);
+}
+
 p {
-  font-family: var(--font-josefin);
+  font-family: "Gill Sans", sans-serif;
   color: var(--white);
 }
 
@@ -38,10 +42,11 @@ h3 {
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.5rem;
-  font-family: Arial black;
+  font-family: "Gill Sans", sans-serif;
 }
 p {
-  font-weight: 300;
+  font-family: "Gill Sans", sans-serif;
+  font-weight: 100;
   font-size: 1.25rem;
   line-height: 1.5rem;
 }

@@ -29,7 +29,7 @@ export default function TemporaryDrawer() {
 
   const list = anchor => (
     <Box
-      className="flex flex-col justify-items-center px-4"
+      className="flex flex-col justify-items-center"
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor)}
@@ -44,7 +44,7 @@ export default function TemporaryDrawer() {
           >
             <ListItemButton>
               <Anchor href={`./${text.toLowerCase()}`}>
-                <p className="navHover text-3xl font-black uppercase text-color-white">{text}</p>
+                <p className="navHover text-3xl font-bold uppercase text-color-white">{text}</p>
               </Anchor>
             </ListItemButton>
           </ListItem>

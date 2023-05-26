@@ -98,10 +98,10 @@ export function ObjectBand({ days, selectedAct, bands, LocalStorageFavourite, lo
             href={`/bands/${bandSlug(band.act)}`}
             className="flex flex-col w-full h-full gap-16 md:gap-0 justify-center md:justify-between bg-color-black bg-opacity-50"
           >
-            <span className="text-color-black font-sans uppercase font-bold pt-2 md:pt-4 lg:pt-5 place-self-center w-fit px-6 mx-6 mt-20 py-1 md:py-2 lg:py-3 md:text-xl lg:text-2xl text-center bg-color-white">
+            <span className="text-color-black font-sans uppercase font-bold md:pt-4 lg:pt-5 place-self-center w-fit px-6 mx-6 mt-20 py-1 md:py-2 lg:py-3 md:text-xl lg:text-2xl text-center bg-color-white">
               {band.act}
             </span>
-            <span className="timeslot text-color-red font-sans uppercase font-bold pt-2 place-self-center w-max px-6 mx-6 mb-20 py-1 md:text-xl lg:text-xl text-center bg-color-white">
+            <span className="timeslot text-color-red font-sans uppercase font-bold place-self-center w-max px-6 mx-6 mb-20 py-1 md:text-xl lg:text-xl text-center bg-color-white">
               {band.cancelled ? "Cancelled" : ""}
             </span>
           </Anchor>

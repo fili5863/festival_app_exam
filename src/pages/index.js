@@ -51,7 +51,12 @@ export default function MyApp({ bands }) {
           </div>
         </div>
         <Button className="mt-8 rounded-none border-2 border-solid place-self-center border-color-yellow h-10 px-20 text-color-yellow hover:bg-color-yellow hover:text-color-black">
-          <Anchor href="/program">SEE ALL ARTIST</Anchor>
+          <Anchor
+            className="font"
+            href="/program"
+          >
+            SEE ALL ARTIST
+          </Anchor>
         </Button>
       </div>
     </>
