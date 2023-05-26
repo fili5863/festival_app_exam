@@ -20,8 +20,7 @@ h2 {
   font-size: 3rem;
   font-weight: 700;
   position: relative;
-  text-shadow: 1px 1px 0 var(--white), -1px -1px 0 var(--white), 1px -1px 0 var(--white),
-    -1px 1px 0 var(--white), 1px 1px 0 var(--white);
+  text-shadow: 1px 1px 0 var(--white), -1px -1px 0 var(--white), 1px -1px 0 var(--white), -1px 1px 0 var(--white), 1px 1px 0 var(--white);
   color: var(--black);
   font-family: var(--font-josefin);
 }
@@ -41,6 +40,16 @@ p {
   font-weight: 300;
   font-size: 1.25rem;
   line-height: 1.5rem;
+}
+
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover,
+p:hover {
+  cursor: default;
 }
 
 /* span.timeslot {
