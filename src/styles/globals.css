@@ -166,13 +166,16 @@ a > *:hover {
   .bandHover2:hover {
     background-position: 0 100%;
   }
-  .navHover {
+
+  .navHover,
+  .awesomeEffect {
     position: relative;
     color: #ffffff;
     text-decoration: none;
   }
 
-  .navHover::after {
+  .navHover::after,
+  .awesomeEffect::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -185,7 +188,13 @@ a > *:hover {
     transform: scaleX(0);
   }
 
-  .navHover:hover::after {
+  .awesomeEffect::after {
+    height: 2px;
+    bottom: -3px;
+  }
+
+  .navHover:hover::after,
+  .awesomeEffect:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
   }

@@ -24,7 +24,7 @@ export default function MyApp({ bands }) {
           <h1 className="text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl">FOOFEST</h1>
           <h4 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10"> Where amazing music meets Scandinavian Serenity in Dancing Lights! </h4>
           {/* <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10">Experience the Magic: FooFest - Where Scandinavian Serenity Meets Dancing Northern Lights!</h3> */}
-          <Button className="mt-20 rounded-none border-2 md:text-xl md:py-6 border-solid place-self-center border-color-yellow h-10 px-20 text-color-yellow hover:bg-color-yellow hover:text-color-black">
+          <Button className="text-xs mt-20 rounded-none border-2 px-8 md:py-4 md:px-20 border-solid place-self-center border-color-yellow h-10 text-color-yellow hover:bg-color-yellow hover:text-color-black">
             <Anchor href="/bands">SECURE YOUR TICKETS HERE</Anchor>
           </Button>
         </div>
@@ -41,7 +41,7 @@ export default function MyApp({ bands }) {
             <BandList3 bands={bands} />
           </div>
         </div>
-        <Button className="md:text-xl md:py-6 mt-8 rounded-none border-2 border-solid place-self-center border-color-yellow h-10 px-20 text-color-yellow hover:bg-color-yellow hover:text-color-black">
+        <Button className="text-xs md:text-l md:py-4 mt-8 rounded-none border-2 border-solid place-self-center border-color-yellow h-10 px-20 text-color-yellow hover:bg-color-yellow hover:text-color-black">
           <Anchor href="/program">SEE ALL ARTIST</Anchor>
         </Button>
       </div>
