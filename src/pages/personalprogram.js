@@ -13,6 +13,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState, useEffect } from "react";
 import { ButtonBase, Skeleton, TextField, Checkbox } from "@mui/material";
+import config from "../../config";
 
 export default function PersonalProgram({ schedule, bands }) {
   // console.log("Schedule", schedule);
@@ -354,11 +355,12 @@ const [checked, setChecked] = React.useState(true)
   }
     
 export async function getServerSideProps() {
+  const apiUrl = config[process.env.NODE_ENV].apiUrl;
   {/* const band = context.params.band; */}
 
   {/* Fetch post data from API using the ID parameter */}
 
-  const [res1, res2, res3] = await Promise.all([fetch(`http://localhost:8080/bands`), fetch(`http://localhost:8080/schedule`), fetch(`http://localhost:8080/events`)]);
+  const [res1, res2, res3] = await Promise.all([fetch(`${apiUrl}/bands`), fetch(`${apiUrl}/schedule`), fetch(`${apiUrl}/events`)]);
 
   const bands = await res1.json();
   const schedule = await res2.json();

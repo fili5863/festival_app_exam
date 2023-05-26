@@ -9,6 +9,7 @@ import { BadgeRounded } from "@mui/icons-material";
 import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
 import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
 import { Schedule } from "../components/Schedule";
+import config from "../../config";
 
 export default function Program({ schedule, bands }) {
   // console.log(schedule);
@@ -105,11 +106,18 @@ export default function Program({ schedule, bands }) {
   const action = (
     <>
       <Anchor href="personalprogram">
-        <Button color="success" size="small">
+        <Button
+          color="success"
+          size="small"
+        >
           See Personal Program
         </Button>
       </Anchor>
-      <IconButton size="small" aria-label="close" color="inherit">
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+      >
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
@@ -148,23 +156,52 @@ export default function Program({ schedule, bands }) {
       <h1 className="uppercase text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">Program</h1>
       <div className="flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row-reverse justify-center gap-2 lg:mt-10">
-          <TextField className="text-color-yellow w-9/12 place-self-center mt-10 lg:mt-0 lg:w-auto" onChange={handleChange} placeholder="Search for band"></TextField>
-          <FilterbuttonsStage schedule={schedule} onClick={handleStageClick} selectedAct={selectedAct} />
+          <TextField
+            className="text-color-yellow w-9/12 place-self-center mt-10 lg:mt-0 lg:w-auto"
+            onChange={handleChange}
+            placeholder="Search for band"
+          ></TextField>
+          <FilterbuttonsStage
+            schedule={schedule}
+            onClick={handleStageClick}
+            selectedAct={selectedAct}
+          />
         </div>
-        <FilterbuttonsDay schedule={schedule} onClick={handleDayClick} selectedAct={selectedAct} selectedDay={selectedDay} />
+        <FilterbuttonsDay
+          schedule={schedule}
+          onClick={handleDayClick}
+          selectedAct={selectedAct}
+          selectedDay={selectedDay}
+        />
       </div>
-      <Schedule schedule={schedule} selectedStage={selectedStage} selectedDay={selectedDay} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} />
-      <Snackbar open={snackOpen[0]} autoHideDuration={4000} onClose={closeSnack} message={snackOpen[1]} action={action} />;
+      <Schedule
+        schedule={schedule}
+        selectedStage={selectedStage}
+        selectedDay={selectedDay}
+        selectedAct={selectedAct}
+        bands={bands}
+        LocalStorageFavourite={LocalStorageFavourite}
+        localChecked={localChecked}
+      />
+      <Snackbar
+        open={snackOpen[0]}
+        autoHideDuration={4000}
+        onClose={closeSnack}
+        message={snackOpen[1]}
+        action={action}
+      />
+      ;
     </div>
   );
 }
 
 export async function getServerSideProps() {
+  const apiUrl = config[process.env.NODE_ENV].apiUrl;
   // const band = context.params.band;
 
   // Fetch post data from API using the ID parameter
 
-  const [res1, res2, res3] = await Promise.all([fetch(`http://localhost:8080/bands`), fetch(`http://localhost:8080/schedule`), fetch(`http://localhost:8080/events`)]);
+  const [res1, res2, res3] = await Promise.all([fetch(`${apiUrl}/bands`), fetch(`${apiUrl}/schedule`), fetch(`${apiUrl}/events`)]);
 
   const bands = await res1.json();
   const schedule = await res2.json();
