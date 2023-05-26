@@ -25,18 +25,9 @@ export function FilterbuttonsStage({ schedule, onClick, selectedAct }) {
 
   return (
     <div className="flex justify-center">
-      <Tabs
-        variant="scrollable"
-        scrollButtons="auto"
-        className=""
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-      >
-        <Tab sx={{ color: "#fff" }} value="one" label="All" onClick={() => onClick("")} />
-        {Object.keys(schedule).map(stage => (
+      <Tabs variant="scrollable" scrollButtons="auto" className="" value={value} onChange={handleChange} textColor="secondary" indicatorColor="secondary" aria-label="secondary tabs example">
+        <Tab sx={{ color: "#fff" }} value="one" label="All stages" onClick={() => onClick("")} />
+        {Object.keys(schedule).map((stage) => (
           <Tab
             sx={{
               color: "#fff",

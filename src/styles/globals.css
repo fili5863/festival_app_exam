@@ -82,12 +82,35 @@ a > *:hover {
   color: #f9f01f;
 }
 
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-family: var(--font-josefin);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: white;
+}
+
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 0.5rem 1rem;
   color: #f9f9f9;
   border: solid #f9f9f9 2px;
   border-radius: 5px;
 }
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input:hover {
+  border: solid #f9f9f9 2px;
+}
+
+.Mui-focused .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  border: none;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #f9f01f;
+}
+
 /* burgermenu */
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper,
 .css-1u2w381-MuiModal-root-MuiDrawer-root {
@@ -148,13 +171,16 @@ a > *:hover {
   .bandHover2:hover {
     background-position: 0 100%;
   }
-  .navHover {
+
+  .navHover,
+  .awesomeEffect {
     position: relative;
     color: #ffffff;
     text-decoration: none;
   }
 
-  .navHover::after {
+  .navHover::after,
+  .awesomeEffect::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -167,7 +193,13 @@ a > *:hover {
     transform: scaleX(0);
   }
 
-  .navHover:hover::after {
+  .awesomeEffect::after {
+    height: 2px;
+    bottom: -3px;
+  }
+
+  .navHover:hover::after,
+  .awesomeEffect:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
   }
