@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Fragment } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -15,38 +16,25 @@ export default function TemporaryDrawer() {
     right: false,
   });
 
-  const toggleDrawer = anchor => event => {
+  const toggleDrawer = (anchor) => (event) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
     setOpened(!opened);
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       [anchor]: !prevState[anchor],
     }));
   };
 
-  const list = anchor => (
-    <Box
-      className="flex flex-col justify-items-center"
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor)}
-      onKeyDown={toggleDrawer(anchor)}
-    >
+  const list = (anchor) => (
+    <Box className="flex flex-col justify-items-center px-4" sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }} role="presentation" onClick={toggleDrawer(anchor)} onKeyDown={toggleDrawer(anchor)}>
       <List>
-        {["Program", "Tickets", "News", "Volunteer"].map(text => (
-          <ListItem
-            className="flex"
-            key={text}
-            disablePadding
-          >
+        {["Program", "Tickets", "News", "Volunteer"].map((text) => (
+          <ListItem className="flex" key={text} disablePadding>
             <ListItemButton>
-              <Anchor
-                className="font-sans"
-                href={`./${text.toLowerCase()}`}
-              >
-                <p className="font-sans text-3xl font-black uppercase text-color-white">{text}</p>
+              <Anchor className="font-sans" href={`./${text.toLowerCase()}`}>
+                <p className="font-sans text-3xl font-black uppercase text-color-white hover:underline underline-offset-4">{text}</p>
               </Anchor>
             </ListItemButton>
           </ListItem>
@@ -57,21 +45,13 @@ export default function TemporaryDrawer() {
 
   return (
     <div className="flex">
-      {["right"].map(anchor => (
-        <React.Fragment key={anchor}>
-          <Example
-            toggleDrawer={toggleDrawer(anchor)}
-            opened={opened}
-            setOpened={setOpened}
-          />
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor)}
-          >
+      {["right"].map((anchor) => (
+        <Fragment key={anchor}>
+          <Example toggleDrawer={toggleDrawer(anchor)} opened={opened} setOpened={setOpened} />
+          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor)}>
             {list(anchor)}
           </Drawer>
-        </React.Fragment>
+        </Fragment>
       ))}
     </div>
   );
