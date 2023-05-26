@@ -2,14 +2,14 @@ import Head from "next/head";
 import Anchor from "@/components/Anchor";
 import Image from "next/image";
 import Logo from "../components/svgs/logo.png";
-import App from "next/app";
+// import App from "next/app";
 import Button from "@mui/material/Button";
-import Navbar from "@/components/Navbar";
-import Checkbox from "@mui/material/Checkbox";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
-import { useState, useEffect } from "react";
-import { ButtonBase } from "@mui/material";
+// import Navbar from "@/components/Navbar";
+// import Checkbox from "@mui/material/Checkbox";
+// import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+// import Favorite from "@mui/icons-material/Favorite";
+// import { useState, useEffect } from "react";
+// import { ButtonBase } from "@mui/material";
 
 export default function MyApp({ bands }) {
   console.log(bands);
@@ -53,7 +53,6 @@ export async function getServerSideProps() {
   const api = "http://localhost:8080/bands";
   const res = await fetch(api);
   const data = await res.json();
-  console.log(data);
 
   return {
     props: {
