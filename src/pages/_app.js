@@ -19,9 +19,7 @@ export default function MyApp({ Component, pageProps, bandData }) {
   return (
     <>
       <Layout bandData={bandData}>
-        <main
-          className={`${josefinSans.variable} font-sans ${playfairDisplay.variable} font-serif  `}
-        >
+        <main className={`${josefinSans.variable} font-sans ${playfairDisplay.variable} font-serif  `}>
           <Component {...pageProps} />
         </main>
       </Layout>

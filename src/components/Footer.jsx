@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <>
-      <div className="mt-24 mx-auto h-0.5 w-4/5 max-w-3/4 bg-color-white"></div>
+      <div className="mt-20 mx-auto h-0.5 w-4/5 max-w-3/4 bg-color-white"></div>
       <section className="footer justify-evenly lg:grid grid-cols-3 my-10">
         <p className="col-start-2 col-span-1 self-center text-center uppercase font-bold hover:cursor-default sm:mb-5 lg:mb-0">All rights reserved &#169; </p>
         <p className="col-start-3 col-span-1 flex justify-center lg:justify-end">
