@@ -116,7 +116,7 @@ a > *:hover {
 .css-1u2w381-MuiModal-root-MuiDrawer-root {
   display: flex;
   justify-content: center;
-  z-index: 1;
+  z-index: 40;
 }
 
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper {
