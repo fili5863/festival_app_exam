@@ -19,7 +19,7 @@ export default function Product({ bandData, scheduleData }) {
   const [favourites, setFavourites] = useState([]);
   const [checked, setChecked] = React.useState(false);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setChecked(event.target.checked);
   };
 
@@ -60,7 +60,7 @@ export default function Product({ bandData, scheduleData }) {
         console.log("3", favourites);
         // NEED TO MAKE IT NOT PUSH IF EMPTY
         const updatedLocal = [...currentToArray, favourites];
-        const newUpdatedLocal = updatedLocal.map(band => band + "/");
+        const newUpdatedLocal = updatedLocal.map((band) => band + "/");
         console.log("Concat", newUpdatedLocal);
         const NULJSON = JSON.stringify(newUpdatedLocal);
         const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
@@ -68,8 +68,8 @@ export default function Product({ bandData, scheduleData }) {
         localStorage.setItem("favourites", NULJSON2);
       } else if (currentToArray.includes(bandData.name)) {
         console.log("4", favourites);
-        const filteredList = currentToArray.filter(band => band !== bandData.name);
-        const newUpdatedLocal = filteredList.map(band => band + "/");
+        const filteredList = currentToArray.filter((band) => band !== bandData.name);
+        const newUpdatedLocal = filteredList.map((band) => band + "/");
         console.log("TheFiltering", newUpdatedLocal);
         const NULJSON = JSON.stringify(newUpdatedLocal);
         const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
@@ -97,7 +97,7 @@ export default function Product({ bandData, scheduleData }) {
   }, [favourites]);
 
   function LocalStorageFavourite() {
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     if (snackOpen[0] === true) {
       closeSnack;
       sleep(500).then(() => {
@@ -134,19 +134,12 @@ export default function Product({ bandData, scheduleData }) {
 
   const action = (
     <>
-      <Anchor href="personalprogram">
-        <Button
-          color="success"
-          size="small"
-        >
+      <Anchor href="../personalprogram">
+        <Button color="success" size="small">
           See Personal Program
         </Button>
       </Anchor>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-      >
+      <IconButton size="small" aria-label="close" color="inherit">
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
@@ -154,9 +147,7 @@ export default function Product({ bandData, scheduleData }) {
 
   // console.log(bandData);
   console.log("scheduleData", scheduleData);
-  const logoUrl = bandData.logo.startsWith("https://")
-    ? bandData.logo
-    : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
+  const logoUrl = bandData.logo.startsWith("https://") ? bandData.logo : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
   // matching act is initialized as null
   let matchingAct = null; // Initialize a variable to store the matching act
 
@@ -228,26 +219,20 @@ export default function Product({ bandData, scheduleData }) {
   return (
     <>
       <Head>
-        <title>{bandData.name}</title>
+        <title>Foofest | {bandData.name}</title>
       </Head>
       <div className="max-w-screen-xl m-auto">
         <p className="text-color-white">
           Favourites: <span>{favourites}</span>
         </p>
-        <button
-          className="text-color-white"
-          onClick={() => console.log(checked)}
-        >
+        <button className="text-color-white" onClick={() => console.log(checked)}>
           Is Checked? -
         </button>
         {/* <button className="text-color-white" onClick={() => console.log(favourites)}>
           Band name
         </button> */}
         <div className="relative aspect-video object-contain grid ">
-          <Button
-            onClick={() => goBack()}
-            className="absolute left-1 top-1 z-40"
-          >
+          <Button onClick={() => goBack()} className="absolute left-1 top-1 z-40">
             <ArrowLeft className="fill-color-yellow w-10" />
           </Button>
           {matchingAct.cancelled !== true ? (
@@ -271,60 +256,39 @@ export default function Product({ bandData, scheduleData }) {
           )}
           {matchingAct.cancelled === true ? (
             <div className="grid items-center justify-items-center ">
-              <h2 className="w-full uppercase text-center bg-color-red z-40 grid col-start-1 row-start-1 text-color-blue">
-                Cancelled
-              </h2>
-              <img
-                src={logoUrl}
-                alt={bandData.bio}
-                className="z-10 filter grayscale object-contain w-full col-start-1 row-start-1 aspect-video pointer-events-none"
-              />
+              <h2 className="w-full uppercase text-center bg-color-red z-40 grid col-start-1 row-start-1 text-color-blue">Cancelled</h2>
+              <img src={logoUrl} alt={bandData.bio} className="z-10 filter grayscale object-contain w-full col-start-1 row-start-1 aspect-video pointer-events-none" />
             </div>
           ) : (
-            <img
-              src={logoUrl}
-              alt={bandData.bio}
-              className="w-full aspect-video object-contain z-10 pointer-events-none"
-            />
+            <img src={logoUrl} alt={bandData.bio} className="w-full aspect-video object-contain z-10 pointer-events-none" />
           )}
-          <img
-            src={logoUrl}
-            alt={bandData.bio}
-            className="absolute z-0 grid-row-1 w-full aspect-video object-fill blur-sm pointer-events-none"
-          />
+          <img src={logoUrl} alt={bandData.bio} className="absolute z-0 grid-row-1 w-full aspect-video object-fill blur-sm pointer-events-none" />
         </div>
-        <h3 className="text-4xl uppercase pt-2 pb-3 ">{bandData.name}</h3>
-        <section className="pb-5">
-          <p>{bandData.genre}</p>
-        </section>
-        {matchingAct && (
-          <section className="pb-8">
-            <p>
-              <span className="font-semibold"> {matchingAct.day}</span>, {matchingAct.start}
-            </p>
-
-            <span className="font-thin font-sans text-xl text-color-white">
-              {matchingAct.stage}
-            </span>
+        <div className="max-w-2xl mx-auto px-1 sm:px-0">
+          <h3 className="text-4xl uppercase pt-2 pb-3 ">{bandData.name}</h3>
+          <section className="pb-5">
+            <p>{bandData.genre}</p>
           </section>
-        )}
-        <section className="pb-10">
-          <h3 className="uppercase">Biografi</h3>
-          <p>{bandData.bio}</p>
-        </section>
-        <div className="flex justify-center gap-10">
-          <Spotify className="w-12 h-12 mr-10" />
-          <Youtube className="w-12 h-12" />
+          {matchingAct && (
+            <section className="pb-8">
+              <p>
+                <span className="font-semibold"> {matchingAct.day}</span>, {matchingAct.start}
+              </p>
+
+              <span className="font-thin font-sans text-xl text-color-white">{matchingAct.stage}</span>
+            </section>
+          )}
+          <section className="pb-10">
+            <h3 className="uppercase">Biografi</h3>
+            <p className="max-w-prose">{bandData.bio}</p>
+          </section>
+          <div className="flex justify-center gap-10">
+            <Spotify className="w-12 h-12 mr-10" />
+            <Youtube className="w-12 h-12" />
+          </div>
         </div>
       </div>
-      <Snackbar
-        open={snackOpen[0]}
-        autoHideDuration={4000}
-        onClose={closeSnack}
-        message={snackOpen[1]}
-        action={action}
-      />
-      ;
+      <Snackbar open={snackOpen[0]} autoHideDuration={4000} onClose={closeSnack} message={snackOpen[1]} action={action} />;
     </>
   );
 }
@@ -339,10 +303,7 @@ export async function getServerSideProps(context) {
 
   // Fetch post data from API using the ID parameter
 
-  const [res1, res2] = await Promise.all([
-    fetch(`${apiUrl}/bands/${band}`),
-    fetch(`${apiUrl}/schedule`),
-  ]);
+  const [res1, res2] = await Promise.all([fetch(`${apiUrl}/bands/${band}`), fetch(`${apiUrl}/schedule`)]);
 
   const bandData = await res1.json();
   const scheduleData = await res2.json();

@@ -128,6 +128,19 @@ a > *:hover {
   backdrop-filter: blur(15px);
 }
 
+#alert-dialog-title {
+  -webkit-text-fill-color: black;
+  -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-josefin);
+  text-transform: uppercase;
+}
+
+#alert-dialog-description,
+.css-sxix9q-MuiButtonBase-root-MuiButton-root,
+.css-180lf2n-MuiButtonBase-root-MuiButton-root {
+  font-family: var(--font-josefin);
+}
+
 /* ----------- */
 @media screen and (min-width: 1024px) {
   .bandcontainer {
@@ -206,6 +219,19 @@ a > *:hover {
   .awesomeEffect:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+  }
+}
+
+@media screen and (width < 473px) {
+  .css-hlj6pa-MuiDialogActions-root {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .css-sxix9q-MuiButtonBase-root-MuiButton-root,
+  .css-180lf2n-MuiButtonBase-root-MuiButton-root {
+    width: 100%;
+    margin-left: 0 !important;
   }
 }
 
