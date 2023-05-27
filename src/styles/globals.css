@@ -86,10 +86,15 @@ a > *:hover {
   text-transform: uppercase;
   font-size: 0.75rem;
   color: white;
+  top: -3px;
 }
-
 .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  font-family: var(--font-josefin);
+  text-transform: uppercase;
+  font-size: 1rem;
   color: white;
+  background-color: #1d1c29;
+  padding-right: 5px;
 }
 
 .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
@@ -103,7 +108,7 @@ a > *:hover {
 }
 
 .Mui-focused .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
-  border: none;
+  border: solid transparent 2px;
 }
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
