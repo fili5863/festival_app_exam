@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["scratched-bronze-lingonberry.glitch.me"],
+    domains: ["scratched-bronze-lingonberry.glitch.me", "placeimg.com"],
 
     // The default values
     // imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

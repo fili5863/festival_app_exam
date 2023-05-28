@@ -3,6 +3,7 @@ import Favorite from "@mui/icons-material/Favorite";
 import Anchor from "@/components/Anchor";
 import React from "react";
 import { Checkbox } from "@mui/material";
+import Image from "next/image";
 
 export function ObjectBand({ days, selectedAct, bands, LocalStorageFavourite, localChecked }) {
   // console.log("days", days)
@@ -18,11 +19,9 @@ export function ObjectBand({ days, selectedAct, bands, LocalStorageFavourite, lo
   };
   /* Baggrundsbillede */
   const backgroundImage = (name) => {
-    /* console.log(name); */
-    // console.log("bands", bands);
     for (let i = 0; i < bands.length; i++) {
       if (name === bands[i].name) {
-        return bands[i].logo.startsWith("https://") ? `url("${bands[i].logo}"` : `url("https://scratched-bronze-lingonberry.glitch.me/logos/${bands[i].logo}")`;
+        return bands[i].logo.startsWith("https://") ? bands[i].logo : `https://scratched-bronze-lingonberry.glitch.me/logos/${bands[i].logo}`;
       }
     }
   };
@@ -34,11 +33,18 @@ export function ObjectBand({ days, selectedAct, bands, LocalStorageFavourite, lo
         /* --------------------------------------- */
         <div
           key={band.act}
-          style={{ backgroundImage: backgroundImage(band.act) }}
+          // style={{ backgroundImage: backgroundImage(band.act) }}
           className="bandcontainer relative grid items-start justify-items-center bg-cover bg-no-repeat h-96 pb-110 border-b-2 border-color-white last:border-none  md:border-none"
         >
+          <Image
+            className="-z-20"
+            fill={true}
+            src={backgroundImage(band.act)}
+            alt={band.bio}
+            quality={80}
+          />
           {/* --------------------------------------- */}
-          <div className="iconContainer absolute top-5 right-5 w-3 h-3 bg-color-yellow p-5 rounded-full flex items-center justify-center">
+          <div className="iconContainer absolute top-5 right-5 w-3 h-3 bg-color-yellow p-5 rounded-full flex items-center justify-center z-100">
             <Checkbox
               onClick={LocalStorageFavourite}
               checked={localChecked(band.act)}
@@ -67,9 +73,16 @@ export function ObjectBand({ days, selectedAct, bands, LocalStorageFavourite, lo
         /* Cancelled */
         <div
           key={band.act}
-          style={{ backgroundImage: backgroundImage(band.act) }}
+          // style={{ backgroundImage: backgroundImage(band.act) }}
           className="relative grid items-start justify-items-center bg-cover bg-no-repeat h-96 pb-110 border-b-2 border-color-white last:border-none  md:border-none"
         >
+          <Image
+            className="-z-10"
+            fill={true}
+            src={backgroundImage(band.act)}
+            alt={band.bio}
+            quality={80}
+          />
           {/* --------------------------------------- */}
           <div className="iconContainer absolute top-5 right-5 w-3 h-3 bg-color-yellow p-5 rounded-full flex items-center justify-center">
             <Checkbox
