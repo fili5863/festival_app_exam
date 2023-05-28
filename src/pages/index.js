@@ -25,6 +25,7 @@ export default function MyApp({ bands }) {
             src={Logo}
             height={"100%"}
             width={"100%"}
+            alt="FooFest logo"
           ></Image>
           <h1 className="text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl">FOOFEST</h1>
           <h4 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10"> Where amazing music meets Scandinavian Serenity in Dancing Lights! </h4>
