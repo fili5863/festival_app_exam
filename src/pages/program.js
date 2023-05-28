@@ -11,6 +11,7 @@ import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
 import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
 import { Schedule } from "../components/Schedule";
 import apiConfig from "../../apiConfig";
+import Image from "next/image";
 
 export default function Program({ schedule, bands }) {
   // console.log(schedule);
@@ -108,11 +109,18 @@ export default function Program({ schedule, bands }) {
   const action = (
     <>
       <Anchor href="personalprogram">
-        <Button color="success" size="small">
+        <Button
+          color="success"
+          size="small"
+        >
           See Personal Program
         </Button>
       </Anchor>
-      <IconButton size="small" aria-label="close" color="inherit">
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+      >
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
@@ -192,14 +200,42 @@ export default function Program({ schedule, bands }) {
         <div className="flex flex-col gap-6 mt-10 mb-20">
           <div className="flex flex-col lg:flex-row-reverse justify-center gap-2 lg:mt-10 ">
             <div className=" flex justify-center w-64 sm:w-80 md:w-96 mx-auto lg:mx-0">
-              <TextField className="w-full" label="Search for band" onChange={handleChange}></TextField>
+              <TextField
+                className="w-full"
+                label="Search for band"
+                onChange={handleChange}
+              ></TextField>
             </div>
-            <FilterbuttonsStage schedule={schedule} onClick={handleStageClick} selectedAct={selectedAct} />
+            <FilterbuttonsStage
+              schedule={schedule}
+              onClick={handleStageClick}
+              selectedAct={selectedAct}
+            />
           </div>
-          <FilterbuttonsDay schedule={schedule} onClick={handleDayClick} selectedAct={selectedAct} selectedDay={selectedDay} />
+          <FilterbuttonsDay
+            schedule={schedule}
+            onClick={handleDayClick}
+            selectedAct={selectedAct}
+            selectedDay={selectedDay}
+          />
         </div>
-        <Schedule schedule={schedule} selectedStage={selectedStage} selectedDay={selectedDay} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} />
-        <Snackbar open={snackOpen[0]} autoHideDuration={4000} onClose={closeSnack} message={snackOpen[1]} action={action} />;
+        <Schedule
+          schedule={schedule}
+          selectedStage={selectedStage}
+          selectedDay={selectedDay}
+          selectedAct={selectedAct}
+          bands={bands}
+          LocalStorageFavourite={LocalStorageFavourite}
+          localChecked={localChecked}
+        />
+        <Snackbar
+          open={snackOpen[0]}
+          autoHideDuration={4000}
+          onClose={closeSnack}
+          message={snackOpen[1]}
+          action={action}
+        />
+        ;
       </div>
     </>
   );

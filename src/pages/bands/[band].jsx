@@ -11,6 +11,7 @@ import { ArrowLeft } from "@/components/svgs";
 import { TextField, Checkbox, Snackbar, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import apiConfig from "../../../apiConfig";
+import Image from "next/image";
 
 import "material-symbols";
 
