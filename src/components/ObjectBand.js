@@ -37,9 +37,10 @@ export function ObjectBand({ days, selectedAct, bands, LocalStorageFavourite, lo
           className="bandcontainer relative grid items-start justify-items-center bg-cover bg-no-repeat h-96 pb-110 border-b-2 border-color-white last:border-none  md:border-none"
         >
           <Image
-            fill={true}
             src={backgroundImage(band.act)}
             alt={band.bio}
+            height={1080}
+            width={1920}
             quality={80}
           />
           {/* --------------------------------------- */}
@@ -77,7 +78,8 @@ export function ObjectBand({ days, selectedAct, bands, LocalStorageFavourite, lo
         >
           <Image
             className=""
-            fill={true}
+            height={1080}
+            width={1920}
             src={backgroundImage(band.act)}
             alt={band.bio}
             quality={80}
