@@ -18,6 +18,7 @@ export default function MyApp({ bands }) {
     <>
       <Head>
         <title>FooFest | Welcome to FooFest!</title>
+        <meta>FooFest - Where amazing music meets Scandinavian serenity in dancing lights </meta>
       </Head>
       <div className="bg-index-background bg-no-repeat bg-center bg-cover  bg-blend-screen min-h-screen flex flex-col gap-12">
         <div class="w-3/4 max-w-2xl flex flex-col justify-center m-auto ">
