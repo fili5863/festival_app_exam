@@ -272,21 +272,30 @@ export default function Product({ bandData, scheduleData }) {
             <div className="grid items-center justify-items-center ">
               <h2 className="w-full uppercase text-center bg-color-red z-40 grid col-start-1 row-start-1 text-color-blue">Cancelled</h2>
               <Image
+                width={100}
+                height={100}
                 src={logoUrl}
                 alt={bandData.bio}
+                quality={80}
                 className="z-10 filter grayscale object-contain w-full col-start-1 row-start-1 aspect-video pointer-events-none"
               />
             </div>
           ) : (
             <Image
+              width={100}
+              height={100}
               src={logoUrl}
               alt={bandData.bio}
+              quality={80}
               className="w-full aspect-video object-contain z-10 pointer-events-none"
             />
           )}
           <Image
+            width={100}
+            height={100}
             src={logoUrl}
             alt={bandData.bio}
+            quality={80}
             className="absolute z-0 grid-row-1 w-full aspect-video object-fill blur-sm pointer-events-none"
           />
         </div>
