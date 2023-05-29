@@ -110,7 +110,7 @@ a > *:hover {
 }
 
 .Mui-focused .MuiOutlinedInput-input {
-  border: solid transparent 2px;
+  border: solid var(--yellow) 2px;
 }
 
 .Mui-focused .MuiOutlinedInput-notchedOutline {
