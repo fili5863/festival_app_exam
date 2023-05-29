@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
+import { backgroundImg } from "@/components/svgs";
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,7 +13,7 @@ module.exports = {
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "logo-navbar": "url('/src/assets/logoOnly.svg')",
         "index-background":
-          "linear-gradient(0deg, rgba(16,32,56,1) -20%, rgba(29,28,41,1) 100%), url(../components/svgs/background.png)",
+          "linear-gradient(0deg, rgba(16,32,56,1) -20%, rgba(29,28,41,1) 100%), url(../components/svgs/background2.png)",
       },
     },
 
@@ -39,7 +39,7 @@ module.exports = {
       "color-orange": "#E4A74A",
     },
     fontFamily: {
-      sans: ["Gill Sans"],
+      sans: ["Gill Sans, sans-serif"],
       serif: ["var(--font-playfair)"],
     },
   },
