@@ -116,14 +116,14 @@ a > *:hover {
 }
 
 /* burgermenu */
-.css-1160xiw-MuiPaper-root-MuiDrawer-paper,
-.css-1u2w381-MuiModal-root-MuiDrawer-root {
+.MuiDrawer-paper,
+.MuiDrawer-root {
   display: flex;
   justify-content: center;
   z-index: 40;
 }
 
-.css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+.MuiDrawer-paper {
   background: linear-gradient(90deg, rgba(168, 54, 218, 0.38), rgba(169, 54, 218, 0));
   backdrop-filter: blur(15px);
 }
