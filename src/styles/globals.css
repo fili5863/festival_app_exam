@@ -130,7 +130,7 @@ a > *:hover {
 
 /* ----------- */
 @media screen and (min-width: 1024px) {
-  .bandcontainer {
+  .bandcontainer > Image {
     background-size: 166%;
     transition: all 250ms ease-in-out;
     background-position: center;

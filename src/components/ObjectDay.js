@@ -26,7 +26,7 @@ export function ObjectDay({ stage, selectedDay, selectedAct, bands, LocalStorage
   //   /* Denne function gør at vi kan filtrere på hvilken dag der skal vises program for */
   // }
   return <div>
-<h3 className="sm:mt-20 md:text-3xl lg:text-5xl uppercase text-center md:mt-20 lg:mt-28 mb-7 md:mb-10 lg:mb-14">{selectedDay !== "" ? fullDayName(selectedDay) : ""}</h3>
+<h3 className="mt-20 md:text-3xl lg:text-5xl uppercase text-center md:mt-20 lg:mt-28 mb-7 md:mb-10 lg:mb-14">{selectedDay !== "" ? fullDayName(selectedDay) : ""}</h3>
   {Object.keys(stage)
     .filter(day => !selectedDay || day === selectedDay)
     .map(day => {
