@@ -6,7 +6,7 @@ import TemporaryDrawer from "./BurgerMenu";
 
 function Navbar() {
   return (
-    <div className="z-60 flex justify-between bg-color-black-nav backdrop-blur-md p-3 sticky top-0 w-full z-50">
+    <div className="z-60 flex justify-between bg-color-black-nav backdrop-blur p-3 sticky top-0 w-full z-50">
       <Link
         href={"/"}
         className="flex flex-col justify-center max"
