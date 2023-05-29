@@ -7,6 +7,7 @@
   --black: #1d1c29;
   --yellow: #f9f01f;
   --font-playfair: "Playfair Display", serif;
+  --font-gillSans: "Gill Sans", sans-serif;
 }
 h1 {
   font-family: var(--font-playfair);
@@ -73,23 +74,23 @@ a > *:hover {
   color: #f9f01f;
 }
 
-.css-11yukd5-MuiTabs-indicator {
+.MuiTabs-indicator {
   background-color: #f9f01f;
 }
 
-.css-1pr7u1d-MuiButtonBase-root-MuiTab-root.Mui-selected {
+.Mui-selected {
   color: #f9f01f;
 }
 
-.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
-  font-family: var(--font-josefin);
+.MuiInputLabel-root {
+  font-family: var(--font-gillSans);
   text-transform: uppercase;
   font-size: 0.75rem;
   color: white;
   top: -3px;
 }
 .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-  font-family: var(--font-josefin);
+  font-family: var(--font-gillSans);
   text-transform: uppercase;
   font-size: 1rem;
   color: white;
