@@ -159,7 +159,7 @@ export default function Product({ bandData, scheduleData }) {
     ? bandData.logo
     : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
   // matching act is initialized as null
-  /*  let matchingAct = null; */ // Initialize a variable to store the matching act
+  let matchingAct = null; // Initialize a variable to store the matching act
 
   // locationKey is the variable used to loop through each location object in scheduleData.
   // scheduleData = object with nested objects and arrays, where each object represents a different location
