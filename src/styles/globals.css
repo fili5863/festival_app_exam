@@ -99,21 +99,21 @@ a > *:hover {
   padding-right: 5px;
 }
 
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+.MuiOutlinedInput-input {
   padding: 0.5rem 1rem;
   color: #f9f9f9;
   border: solid #f9f9f9 2px;
   border-radius: 5px;
 }
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input:hover {
+.MuiOutlinedInput-input:hover {
   border: solid #f9f9f9 2px;
 }
 
-.Mui-focused .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+.Mui-focused .MuiOutlinedInput-input {
   border: solid transparent 2px;
 }
 
-.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: #f9f01f;
 }
 
