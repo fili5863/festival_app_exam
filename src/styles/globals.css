@@ -78,7 +78,7 @@ a > *:hover {
   background-color: #f9f01f;
 }
 
-.Mui-selected {
+.MuiTab-root .Mui-selected {
   color: #f9f01f;
 }
 
