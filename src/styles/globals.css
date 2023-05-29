@@ -7,7 +7,7 @@
   --black: #1d1c29;
   --yellow: #f9f01f;
   --font-playfair: "Playfair Display", serif;
-  --font-gillSans: "Gill Sans", sans-serif;
+  --font-gillSans: "Gill Sans", "Tahoma", sans-serif;
 }
 h1 {
   font-family: var(--font-playfair);
