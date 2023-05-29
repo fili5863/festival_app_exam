@@ -91,7 +91,7 @@ a > *:hover {
   top: -3px;
 }
 
-.css1jy569b .Mui-focused {
+.css1jy569b.Mui-focused {
   font-family: var(--font-gillSans);
   text-transform: uppercase;
   font-size: 1rem;
@@ -110,11 +110,11 @@ a > *:hover {
   border: solid #f9f9f9 2px;
 }
 
-.Mui-focused .MuiOutlinedInput-input {
+.Mui-focused.MuiOutlinedInput-input {
   border: solid var(--yellow) 2px;
 }
 
-.Mui-focused .MuiOutlinedInput-notchedOutline {
+.Mui-focused.MuiOutlinedInput-notchedOutline {
   border-color: #f9f01f;
 }
 
