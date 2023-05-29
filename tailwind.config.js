@@ -39,7 +39,7 @@ module.exports = {
       "color-orange": "#E4A74A",
     },
     fontFamily: {
-      sans: ["Gill Sans, sans-serif"],
+      sans: ["Gill Sans, Tahoma, sans-serif"],
       serif: ["var(--font-playfair)"],
     },
   },
