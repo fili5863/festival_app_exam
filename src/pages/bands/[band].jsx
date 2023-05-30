@@ -46,7 +46,7 @@ export default function Product({ bandData, scheduleData }) {
     console.log("1", favourites);
     // console.log("currentLocal, 2nd effect", currentLocal);
 
-    if (favourites.length === 0 && checked === false && !currentLocal.includes(bandData.name)) {
+    if (favourites.length === 0 && checked === false) {
       console.log("Fav is empty");
     } else if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
@@ -136,11 +136,18 @@ export default function Product({ bandData, scheduleData }) {
   const action = (
     <>
       <Anchor href="../personalprogram">
-        <Button color="success" size="small">
+        <Button
+          color="success"
+          size="small"
+        >
           See Personal Program
         </Button>
       </Anchor>
-      <IconButton size="small" aria-label="close" color="inherit">
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+      >
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
@@ -148,7 +155,9 @@ export default function Product({ bandData, scheduleData }) {
 
   // console.log(bandData);
   console.log("scheduleData", scheduleData);
-  const logoUrl = bandData.logo.startsWith("https://") ? bandData.logo : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
+  const logoUrl = bandData.logo.startsWith("https://")
+    ? bandData.logo
+    : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
   // matching act is initialized as null
   let matchingAct = null; // Initialize a variable to store the matching act
 
@@ -226,14 +235,20 @@ export default function Product({ bandData, scheduleData }) {
         <p className="text-color-white">
           Favourites: <span>{favourites}</span>
         </p>
-        <button className="text-color-white" onClick={() => console.log(checked)}>
+        <button
+          className="text-color-white"
+          onClick={() => console.log(checked)}
+        >
           Is Checked? -
         </button>
         {/* <button className="text-color-white" onClick={() => console.log(favourites)}>
           Band name
         </button> */}
         <div className="relative aspect-video object-contain grid ">
-          <Button onClick={() => goBack()} className="absolute left-1 top-1 z-40">
+          <Button
+            onClick={() => goBack()}
+            className="absolute left-1 top-1 z-40"
+          >
             <ArrowLeft className="fill-color-yellow w-10" />
           </Button>
           {matchingAct.cancelled !== true ? (
@@ -257,13 +272,36 @@ export default function Product({ bandData, scheduleData }) {
           )}
           {matchingAct.cancelled === true ? (
             <div className="grid items-center justify-items-center ">
-              <h2 className="w-full uppercase text-center bg-color-red z-40 grid col-start-1 row-start-1 text-color-blue">Cancelled</h2>
-              <Image width={100} height={100} src={logoUrl} alt={bandData.bio} quality={80} className="z-10 filter grayscale object-contain w-full col-start-1 row-start-1 aspect-video pointer-events-none" />
+              <h2 className="w-full uppercase text-center bg-color-red z-40 grid col-start-1 row-start-1 text-color-blue">
+                Cancelled
+              </h2>
+              <Image
+                width={100}
+                height={100}
+                src={logoUrl}
+                alt={bandData.bio}
+                quality={80}
+                className="z-10 filter grayscale object-contain w-full col-start-1 row-start-1 aspect-video pointer-events-none"
+              />
             </div>
           ) : (
-            <Image width={100} height={100} src={logoUrl} alt={bandData.bio} quality={80} className="w-full aspect-video object-contain z-10 pointer-events-none" />
+            <Image
+              width={100}
+              height={100}
+              src={logoUrl}
+              alt={bandData.bio}
+              quality={80}
+              className="w-full aspect-video object-contain z-10 pointer-events-none"
+            />
           )}
-          <Image width={100} height={100} src={logoUrl} alt={bandData.bio} quality={80} className="absolute z-0 grid-row-1 w-full aspect-video object-fill blur-sm pointer-events-none" />
+          <Image
+            width={100}
+            height={100}
+            src={logoUrl}
+            alt={bandData.bio}
+            quality={80}
+            className="absolute z-0 grid-row-1 w-full aspect-video object-fill blur-sm pointer-events-none"
+          />
         </div>
         <div className="max-w-2xl mx-auto px-1 sm:px-0">
           <h3 className="text-4xl uppercase pt-2 pb-3 ">{bandData.name}</h3>
@@ -289,7 +327,14 @@ export default function Product({ bandData, scheduleData }) {
           </div>
         </div>
       </div>
-      <Snackbar open={snackOpen[0]} autoHideDuration={4000} onClose={closeSnack} message={snackOpen[1]} action={action} />;
+      <Snackbar
+        open={snackOpen[0]}
+        autoHideDuration={4000}
+        onClose={closeSnack}
+        message={snackOpen[1]}
+        action={action}
+      />
+      ;
     </>
   );
 }
