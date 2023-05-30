@@ -133,14 +133,14 @@ a > *:hover {
 #alert-dialog-title {
   -webkit-text-fill-color: black;
   -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.5);
-  font-family: var(--font-josefin);
+  font-family: var(--font-gillSans);
   text-transform: uppercase;
 }
 
 #alert-dialog-description,
 .css-sxix9q-MuiButtonBase-root-MuiButton-root,
 .css-180lf2n-MuiButtonBase-root-MuiButton-root {
-  font-family: var(--font-josefin);
+  font-family: var(--font-gillSans);
 }
 
 /* ----------- */

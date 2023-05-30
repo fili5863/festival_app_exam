@@ -66,6 +66,13 @@ export default function TemporaryDrawer() {
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor)}
+            PaperProps={{
+              sx: {
+                background:
+                  "linear-gradient(90deg, rgba(168, 54, 218, 0.38), rgba(169, 54, 218, 0))",
+                backdropfilter: "blur(15px)",
+              },
+            }}
           >
             {list(anchor)}
           </Drawer>
