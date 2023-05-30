@@ -254,7 +254,7 @@ export default function Program({ schedule, bands }) {
         />
         <Snackbar
           open={snackOpen[0]}
-          autoHideDuration={100000000}
+          autoHideDuration={4000}
           onClose={closeSnack}
           message={snackOpen[1]}
           action={action}
