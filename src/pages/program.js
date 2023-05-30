@@ -115,6 +115,7 @@ export default function Program({ schedule, bands }) {
         <Button className="text-xs  rounded-none border-2  border-solid  border-color-yellow h-10 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-bold">See Personal Program</Button>
       </Anchor>
       <IconButton
+        onClick={closeSnack}
         className="mx-5 bg-color-white hover:bg-color-yellow"
         size="small"
         aria-label="close"
