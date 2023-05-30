@@ -28,6 +28,7 @@ export default function PersonalProgram({ schedule, bands }) {
 
 //HAndle the dialog when wanting to remove from favourite
   const handleDialogClickOpen = (band) => {
+    console.log(band);
     setDialogOpen([true, band]);
   };
   const handleDialogKeep = () => {
@@ -43,6 +44,7 @@ export default function PersonalProgram({ schedule, bands }) {
   // Useeffect to get data down, from local storage 
   // Make a new state with the favourites (that has all the info), so we can loop through them in the schedule
   useEffect(() => {
+    // const currentLocal = localStorage.getItem("favourites");
     const currentLocal = localStorage.getItem("favourites", JSON.stringify(favourites));
 
     if (currentLocal !== null) {
@@ -151,15 +153,17 @@ export default function PersonalProgram({ schedule, bands }) {
             <h1 className="uppercase text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
         Program
       </h1>
-      <h3 className="text-center mt-20">We collected all your favourite bands, in your own personal program below.</h3>
-      <h3 className="text-center mt-5">Regret adding a band? Press the heart to remove them from your personal program.</h3>
+      <h3 className="text-center mt-16 max-w-prose mx-auto">We collected all your favourite bands, in your own personal program below.</h3>
+      <h3 className="text-center mt-5 max-w-prose mx-auto">Want to remove a band from your favourites? Just press the heart and we'll remove them.</h3>
       <div className="flex flex-col gap-10">
-        <div className="flex flex-col lg:flex-row-reverse justify-center gap-2 lg:mt-10">
+        <div className="flex flex-col lg:flex-row-reverse justify-center gap-2 mt-16">
+          <div className=" flex justify-center w-64 sm:w-80 md:w-96 mx-auto lg:mx-0">
           <TextField
-            className="text-color-yellow w-9/12 place-self-center mt-10 lg:mt-0 lg:w-auto"
+            className="w-full"
             onChange={handleChange}
-            placeholder="Search for band"
-          ></TextField>
+            label="Search for band"
+            ></TextField>
+            </div>
           <FilterbuttonsStage
             schedule={schedule}
             onClick={handleStageClick}
@@ -188,7 +192,7 @@ export default function PersonalProgram({ schedule, bands }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {`Remove ${dialogOpen[1]}, from favourites?`}
+          {`Remove "${dialogOpen[1]}", from favourites?`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
