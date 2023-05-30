@@ -25,25 +25,20 @@ export default function Program({ schedule, bands }) {
   const [showTime, setShowTime] = useState(false);
 
   useEffect(() => {
-    const currentLocal = localStorage.getItem("favourites", JSON.stringify(favourites));
-    console.log("CurrentLocal", currentLocal);
-
-    if (currentLocal !== null) {
+    const currentLocal = localStorage.getItem("favourites");
+    if (currentLocal == "[]") {
+      setFavourites();
+    } else if (currentLocal !== null) {
       const currentToArray = currentLocal.split(`","`);
-      console.log("currentToArray", currentToArray);
       setFavourites(currentToArray);
-    } else {
-      console.log("LocalStorage is Empty");
     }
   }, []);
 
   useEffect(() => {
     const favToString = JSON.stringify(favourites);
-    console.log("FavToString", favToString);
-    if (favToString !== undefined || favToString === []) {
+    if (favToString !== undefined) {
       const editFav = favToString.substring(2, favToString.lastIndexOf(`"]`));
       localStorage.setItem("favourites", editFav);
-      // console.log("editFav", editFav);
     } else {
       localStorage.removeItem("favourites");
     }
@@ -55,19 +50,19 @@ export default function Program({ schedule, bands }) {
 
   function handleDayClick(day) {
     setSelectedDay(day);
-    console.log(day);
+    // console.log(day);
   }
 
   function handleChange(e) {
     setSelectedAct(e.target.value);
-    console.log(e.target.value);
-    console.log("length", setSelectedAct.length);
+    // console.log(e.target.value);
+    // console.log("length", setSelectedAct.length);
   }
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const LocalStorageFavourite = (e) => {
-    // console.log(e)
+    // console.log(e);
     if (snackOpen[0] === true) {
       closeSnack;
       sleep(500).then(() => {
@@ -96,31 +91,21 @@ export default function Program({ schedule, bands }) {
         setFavourites([...favourites, `${band}/`]);
       }
     } else {
-      if (favourites.length === 0) {
+      if (favourites.length < 1) {
         setFavourites();
       } else {
         const newFavourites = favourites.filter((fav) => fav != `${band}/`);
         setFavourites(newFavourites);
       }
     }
-    console.log("CheckFav", favourites);
   }
 
   const action = (
     <>
-      <Anchor
-        className="my-5 "
-        href="personalprogram"
-      >
+      <Anchor className="my-5 " href="personalprogram">
         <Button className="text-xs  rounded-none border-2  border-solid  border-color-yellow h-10 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-bold">See Personal Program</Button>
       </Anchor>
-      <IconButton
-        onClick={closeSnack}
-        className="mx-5 bg-color-white hover:bg-color-yellow"
-        size="small"
-        aria-label="close"
-        color="white"
-      >
+      <IconButton onClick={closeSnack} className="mx-5 bg-color-white hover:bg-color-yellow" size="small" aria-label="close" color="white">
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
@@ -130,13 +115,13 @@ export default function Program({ schedule, bands }) {
     if (favourites !== undefined) {
       for (let i = 0; i < favourites.length; i++) {
         if (favourites[i].substring(0, favourites[i].lastIndexOf("/")) === band) {
-          console.log(favourites[i].substring(0, favourites[i].lastIndexOf("/")));
-          console.log(band);
-          return "checked";
+          // console.log(favourites[i].substring(0, favourites[i].lastIndexOf("/")));
+          // console.log(band);
+          return true;
         }
       }
     } else {
-      return "";
+      return false;
     }
   };
 
@@ -146,12 +131,12 @@ export default function Program({ schedule, bands }) {
 
   function handleDayClick(day) {
     setSelectedDay(day);
-    console.log(day);
+    // console.log(day);
   }
 
   function handleChange(e) {
     setSelectedAct(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
 
   // const customTheme = (outerTheme) =>
@@ -231,36 +216,12 @@ export default function Program({ schedule, bands }) {
                 }}
               ></TextField>
             </div>
-            <FilterbuttonsStage
-              schedule={schedule}
-              onClick={handleStageClick}
-              selectedAct={selectedAct}
-            />
+            <FilterbuttonsStage schedule={schedule} onClick={handleStageClick} selectedAct={selectedAct} />
           </div>
-          <FilterbuttonsDay
-            schedule={schedule}
-            onClick={handleDayClick}
-            selectedAct={selectedAct}
-            selectedDay={selectedDay}
-          />
+          <FilterbuttonsDay schedule={schedule} onClick={handleDayClick} selectedAct={selectedAct} selectedDay={selectedDay} />
         </div>
-        <Schedule
-          schedule={schedule}
-          selectedStage={selectedStage}
-          selectedDay={selectedDay}
-          selectedAct={selectedAct}
-          bands={bands}
-          LocalStorageFavourite={LocalStorageFavourite}
-          localChecked={localChecked}
-        />
-        <Snackbar
-          open={snackOpen[0]}
-          autoHideDuration={4000}
-          onClose={closeSnack}
-          message={snackOpen[1]}
-          action={action}
-        />
-        ;
+        <Schedule schedule={schedule} selectedStage={selectedStage} selectedDay={selectedDay} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} />
+        <Snackbar open={snackOpen[0]} autoHideDuration={4000} onClose={closeSnack} message={snackOpen[1]} action={action} />;
       </div>
     </>
   );

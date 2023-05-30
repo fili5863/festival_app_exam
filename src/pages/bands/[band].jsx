@@ -17,16 +17,14 @@ import "material-symbols";
 
 export default function Product({ bandData, scheduleData }) {
   const [snackOpen, setSnackOpen] = useState([false, ""]);
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState();
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
-
   useEffect(() => {
-    const currentLocal = localStorage.getItem("favourites", JSON.stringify(favourites));
-
+    const currentLocal = localStorage.getItem("favourites");
     if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
       for (let i = 0; i < currentToArray.length; i++) {
@@ -35,66 +33,43 @@ export default function Product({ bandData, scheduleData }) {
           setChecked(true);
         }
       }
-    } else {
-      console.log("LocalStorage is Empty 1");
     }
   }, []);
 
   useEffect(() => {
     const currentLocal = localStorage.getItem("favourites");
-    console.log("curLoc", currentLocal);
-    console.log("1", favourites);
-    // console.log("currentLocal, 2nd effect", currentLocal);
 
-    if (favourites.length === 0 && checked === false && !currentLocal.includes(bandData.name)) {
-      console.log("Fav is empty");
+    if (favourites === null && checked === false && !currentLocal.includes(bandData.name)) {
+      localStorage.removeItem("favourites");
     } else if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
-      // console.log("curToArray", currentToArray);
-
-      // if (favourites !== [] && currentToArray.includes(bandData.name)) {
-      //   console.log("Band er i array");
-      // } else if (favourites !== [] && !currentToArray.includes(bandData.name)) {
-      //   console.log("Band er ikke i array");
-      console.log("2", favourites);
-      if (favourites.length !== 0 && !currentToArray.includes(bandData.name)) {
-        console.log("3", favourites);
-        // NEED TO MAKE IT NOT PUSH IF EMPTY
+      if (favourites === undefined && currentToArray.includes(bandData.name)) {
+        if (currentToArray.length < 2) {
+          localStorage.removeItem("favourites");
+        } else {
+          const filteredList = currentToArray.filter((band) => band !== bandData.name);
+          const newUpdatedLocal = filteredList.map((band) => band + "/");
+          const NULJSON = JSON.stringify(newUpdatedLocal);
+          const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
+          localStorage.setItem("favourites", NULJSON2);
+        }
+      } else if (!currentToArray.includes(bandData.name)) {
         const updatedLocal = [...currentToArray, favourites];
         const newUpdatedLocal = updatedLocal.map((band) => band + "/");
-        console.log("Concat", newUpdatedLocal);
         const NULJSON = JSON.stringify(newUpdatedLocal);
         const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
-        console.log("NULJSON2 - 1", NULJSON2);
         localStorage.setItem("favourites", NULJSON2);
-      } else if (currentToArray.includes(bandData.name)) {
-        console.log("4", favourites);
-        const filteredList = currentToArray.filter((band) => band !== bandData.name);
-        const newUpdatedLocal = filteredList.map((band) => band + "/");
-        console.log("TheFiltering", newUpdatedLocal);
+      }
+    } else if (currentLocal === null) {
+      console.log("favourites", favourites);
+      if (favourites !== undefined) {
+        const newArray = [favourites];
+        const newUpdatedLocal = newArray.map((band) => band + "/");
         const NULJSON = JSON.stringify(newUpdatedLocal);
         const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
-        console.log("NULJSON2 - 2", NULJSON2);
         localStorage.setItem("favourites", NULJSON2);
       }
     }
-    // console.log("fav3", favourites);
-    //   if (currentLocal !== null) {
-    //     if (!favourites === [] && currentToArray.includes(favourites)) {
-    //       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
-    //       console.log("currentToArray first bro", currentToArray);
-    //       const updatedLocal = [...currentToArray, favourites];
-    //       const localString = JSON.stringify(updatedLocal);
-    //       console.log("localString1", localString)
-    //     } else {
-    //       // console.log("Else?", currentToArray);
-    //       // const localString = JSON.stringify(currentToArray.filter((band) => band === favourites));
-    //       // console.log("localString2", localString);
-    //       // localStorage.setItem("favourites", localString);
-    //     }
-    //   } else {
-    //     console.log("LocalStorage is Empty 2");
-    //   }
   }, [favourites]);
 
   function LocalStorageFavourite() {
@@ -102,28 +77,29 @@ export default function Product({ bandData, scheduleData }) {
     if (snackOpen[0] === true) {
       closeSnack;
       sleep(500).then(() => {
-        if (favourites.length === bandData.name.length || favourites.length === 0) {
+        if (favourites === undefined) {
           console.log("1) Nej, vi er her");
           setSnackOpen([true, `${bandData.name} has been added to favourites`]);
-          setFavourites([bandData.name]);
+          setFavourites(bandData.name);
           setChecked(true);
         } else {
           console.log("2) vi er her");
           setSnackOpen([true, `${bandData.name} has been removed from favourites`]);
-          setFavourites([]);
+          setFavourites();
           setChecked(false);
         }
       });
     } else if (snackOpen[0] === false) {
-      if (favourites.length === bandData.name.length || favourites.length === 0) {
+      // favourites.length === bandData.name.length ||
+      if (favourites === undefined) {
         console.log("3) Hallo, vi er her");
         setSnackOpen([true, `${bandData.name} has been added to favourites`]);
-        setFavourites([bandData.name]);
+        setFavourites(bandData.name);
         setChecked(true);
       } else {
         console.log("4) Nej, nej nej, vi er her");
         setSnackOpen([true, `${bandData.name} has been removed from favourites`]);
-        setFavourites([]);
+        setFavourites();
         setChecked(false);
       }
     }
@@ -147,7 +123,7 @@ export default function Product({ bandData, scheduleData }) {
   );
 
   // console.log(bandData);
-  console.log("scheduleData", scheduleData);
+  // console.log("scheduleData", scheduleData);
   const logoUrl = bandData.logo.startsWith("https://") ? bandData.logo : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
   // matching act is initialized as null
   let matchingAct = null; // Initialize a variable to store the matching act
@@ -215,8 +191,8 @@ export default function Product({ bandData, scheduleData }) {
 
   // matchingAct now contains the data for the matching act, if any.
   // This can be used to display the relevant information on the page.
-  console.log(matchingAct);
-  console.log(matchingAct.cancelled);
+  // console.log(matchingAct);
+  // console.log(matchingAct.cancelled);
   return (
     <>
       <Head>
