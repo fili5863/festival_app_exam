@@ -114,7 +114,10 @@ a > *:hover {
 }
 
 .css-1v4ccyo.Mui-focused.MuiOutlinedInput-notchedOutline {
-  border-color: #f9f01f;
+  border-color: var(--yellow);
+}
+.css-o4j2nk-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: var(--yellow);
 }
 
 /* burgermenu */
