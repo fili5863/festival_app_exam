@@ -44,6 +44,7 @@ export default function PersonalProgram({ schedule, bands }) {
   // Useeffect to get data down, from local storage 
   // Make a new state with the favourites (that has all the info), so we can loop through them in the schedule
   useEffect(() => {
+    // const currentLocal = localStorage.getItem("favourites");
     const currentLocal = localStorage.getItem("favourites", JSON.stringify(favourites));
 
     if (currentLocal !== null) {
