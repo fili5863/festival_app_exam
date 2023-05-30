@@ -23,6 +23,7 @@ export default function Product({ bandData, scheduleData }) {
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
   useEffect(() => {
     const currentLocal = localStorage.getItem("favourites");
     if (currentLocal !== null) {
@@ -39,8 +40,8 @@ export default function Product({ bandData, scheduleData }) {
   useEffect(() => {
     const currentLocal = localStorage.getItem("favourites");
 
-    if (favourites === null && checked === false && !currentLocal.includes(bandData.name)) {
-      localStorage.removeItem("favourites");
+    if (checked === false && !currentLocal.includes(bandData.name)) {
+      console.log("Nothing");
     } else if (currentLocal !== null) {
       const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
       if (favourites === undefined && currentToArray.includes(bandData.name)) {
