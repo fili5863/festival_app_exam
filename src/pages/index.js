@@ -30,7 +30,7 @@ export default function MyApp({ bands }) {
           ></Image>
           <h1 className="text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl">FOOFEST</h1>
           <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10"> Where amazing music meets Scandinavian Serenity in Dancing Lights! </h3>
-          {/* <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10">Experience the Magic: FooFest - Where Scandinavian Serenity Meets Dancing Northern Lights!</h3> */}
+
           <Button className="text-xs mt-20 rounded-none border-2 px-8 md:py-4 md:px-20 border-solid place-self-center border-color-yellow h-10 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-bold">
             <Anchor href="/bands">SECURE YOUR TICKETS HERE</Anchor>
           </Button>
@@ -38,7 +38,7 @@ export default function MyApp({ bands }) {
         <div className="my-10 mx-auto h-0.5 w-4/5 max-w-3/4 bg-color-white"></div>
         <div className="flex flex-col gap-6">
           <h3 className="mb-16 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl">EXPERIENCE BANDS SUCH AS:</h3>
-          <div className="flex flex-row flex-wrap gap-y-3 gap-x-4 sm:gap-x-8 md:gap-x-12 lg:gap-x-10  justify-center">
+          <div className="flex flex-row flex-wrap gap-y-3 gap-x-4 sm:gap-x-8 md:gap-x-12 lg:gap-x-10  justify-center ">
             <BandList1 bands={bands} />
           </div>
           <div className="flex flex-row flex-wrap gap-y-3 gap-x-2 sm:gap-x-8 md:gap-x-12 lg:gap-x-10 justify-center">
@@ -75,7 +75,7 @@ export async function getServerSideProps() {
 }
 
 function BandList1(props) {
-  const bandsToShow = props.bands.slice(0, 2);
+  const bandsToShow = props.bands.slice(5, 7);
   return bandsToShow.map((band) => (
     <Band
       key={band.name}
@@ -94,7 +94,7 @@ function BandList2(props) {
 }
 
 function BandList3(props) {
-  const bandsToShow = props.bands.slice(5, 10);
+  const bandsToShow = props.bands.slice(7, 12);
   return bandsToShow.map((band) => (
     <Band3
       key={band.name}
@@ -106,8 +106,13 @@ function BandList3(props) {
 function Band(band) {
   return (
     <>
-      <h2 className="text-center uppercase text-4xl sm:text-6xl md:text-7xl lg:text-8xl bandHover">
-        <Anchor href={`/bands/${band.slug}`}>{band.name}</Anchor>
+      <h2 className="text-center uppercase text-4xl sm:text-6xl md:text-7xl lg:text-8xl bandHover  border-color-white  ">
+        <Anchor
+          className="px-2"
+          href={`/bands/${band.slug}`}
+        >
+          {band.name}
+        </Anchor>
       </h2>
     </>
   );
@@ -115,7 +120,7 @@ function Band(band) {
 function Band2(band) {
   return (
     <>
-      <h3 className="text-center uppercase text-lg sm:text-4xl md:text-5xl lg:text-6xl text-color-white bandHover2">
+      <h3 className="text-center uppercase text-lg sm:text-4xl md:text-5xl lg:text-5xl text-color-white bandHover2 ">
         <Anchor href={`/bands/${band.slug}`}>{band.name}</Anchor>
       </h3>
     </>
@@ -124,9 +129,9 @@ function Band2(band) {
 function Band3(band) {
   return (
     <>
-      <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white bandHover2">
+      <h4 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white bandHover2 font-sans">
         <Anchor href={`/bands/${band.slug}`}>{band.name}</Anchor>
-      </h3>
+      </h4>
     </>
   );
 }
