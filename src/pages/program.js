@@ -11,6 +11,7 @@ import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
 import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
 import { Schedule } from "../components/Schedule";
 import apiConfig from "../../apiConfig";
+import Image from "next/image";
 
 export default function Program({ schedule, bands }) {
   // console.log(schedule);
@@ -63,9 +64,9 @@ export default function Program({ schedule, bands }) {
     console.log("length", setSelectedAct.length);
   }
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-  const LocalStorageFavourite = (e) => {
+  const LocalStorageFavourite = e => {
     // console.log(e)
     if (snackOpen[0] === true) {
       closeSnack;
@@ -78,7 +79,9 @@ export default function Program({ schedule, bands }) {
         }
       });
     } else if (snackOpen[0] === false) {
-      e.target.checked === true ? setSnackOpen([true, `${e.target.value} has been added to favourites`]) : setSnackOpen([true, `${e.target.value} has been removed from favourites`]);
+      e.target.checked === true
+        ? setSnackOpen([true, `${e.target.value} has been added to favourites`])
+        : setSnackOpen([true, `${e.target.value} has been removed from favourites`]);
     }
     CheckFavourites(e.target.value, e.target.checked);
   };
@@ -98,7 +101,7 @@ export default function Program({ schedule, bands }) {
       if (favourites.length === 0) {
         setFavourites();
       } else {
-        const newFavourites = favourites.filter((fav) => fav != `${band}/`);
+        const newFavourites = favourites.filter(fav => fav != `${band}/`);
         setFavourites(newFavourites);
       }
     }
@@ -108,17 +111,24 @@ export default function Program({ schedule, bands }) {
   const action = (
     <>
       <Anchor href="personalprogram">
-        <Button color="success" size="small">
+        <Button
+          color="success"
+          size="small"
+        >
           See Personal Program
         </Button>
       </Anchor>
-      <IconButton size="small" aria-label="close" color="inherit">
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+      >
         <CloseIcon fontSize="small" />
       </IconButton>
     </>
   );
 
-  const localChecked = (band) => {
+  const localChecked = band => {
     if (favourites !== undefined) {
       for (let i = 0; i < favourites.length; i++) {
         if (favourites[i].substring(0, favourites[i].lastIndexOf("/")) === band) {
@@ -188,18 +198,73 @@ export default function Program({ schedule, bands }) {
         <title>FooFest | Program</title>
       </Head>
       <div className="max-w-screen-xl mt-10 m-auto bg-gradient-to-b from-color-black to-color-blue">
-        <h1 className="uppercase text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">Program</h1>
+        <h1 className="uppercase text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+          Program
+        </h1>
         <div className="flex flex-col gap-6 mt-10 mb-20">
           <div className="flex flex-col lg:flex-row-reverse justify-center gap-2 lg:mt-10 ">
             <div className=" flex justify-center w-64 sm:w-80 md:w-96 mx-auto lg:mx-0">
-              <TextField className="w-full" label="Search for band" onChange={handleChange}></TextField>
+              <TextField
+                className="w-full"
+                label="Search for band"
+                onChange={handleChange}
+                sx={{
+                  "& label.Mui-focused": {
+                    color: "yellow",
+                  },
+                  "& .MuiInput-underline:after": {
+                    borderBottomColor: "yellow",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#B2BAC2",
+                    },
+                    "& .MuiOutlinedInput-input": {
+                      borderColor: "none",
+                    },
+                    "& .MuiOutlinedInput-input:focus": {
+                      border: "2px solid transparent",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#B2BAC2",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "yellow",
+                    },
+                  },
+                }}
+              ></TextField>
             </div>
-            <FilterbuttonsStage schedule={schedule} onClick={handleStageClick} selectedAct={selectedAct} />
+            <FilterbuttonsStage
+              schedule={schedule}
+              onClick={handleStageClick}
+              selectedAct={selectedAct}
+            />
           </div>
-          <FilterbuttonsDay schedule={schedule} onClick={handleDayClick} selectedAct={selectedAct} selectedDay={selectedDay} />
+          <FilterbuttonsDay
+            schedule={schedule}
+            onClick={handleDayClick}
+            selectedAct={selectedAct}
+            selectedDay={selectedDay}
+          />
         </div>
-        <Schedule schedule={schedule} selectedStage={selectedStage} selectedDay={selectedDay} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} />
-        <Snackbar open={snackOpen[0]} autoHideDuration={4000} onClose={closeSnack} message={snackOpen[1]} action={action} />;
+        <Schedule
+          schedule={schedule}
+          selectedStage={selectedStage}
+          selectedDay={selectedDay}
+          selectedAct={selectedAct}
+          bands={bands}
+          LocalStorageFavourite={LocalStorageFavourite}
+          localChecked={localChecked}
+        />
+        <Snackbar
+          open={snackOpen[0]}
+          autoHideDuration={4000}
+          onClose={closeSnack}
+          message={snackOpen[1]}
+          action={action}
+        />
+        ;
       </div>
     </>
   );
@@ -211,7 +276,11 @@ export async function getServerSideProps() {
 
   // Fetch post data from API using the ID parameter
 
-  const [res1, res2, res3] = await Promise.all([fetch(`${apiUrl}/bands`), fetch(`${apiUrl}/schedule`), fetch(`${apiUrl}/events`)]);
+  const [res1, res2, res3] = await Promise.all([
+    fetch(`${apiUrl}/bands`),
+    fetch(`${apiUrl}/schedule`),
+    fetch(`${apiUrl}/events`),
+  ]);
 
   const bands = await res1.json();
   const schedule = await res2.json();
