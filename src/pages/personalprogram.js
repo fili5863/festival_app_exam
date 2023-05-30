@@ -151,10 +151,10 @@ export default function PersonalProgram({ schedule, bands }) {
     </Head>
     <div className="max-w-screen-xl my-32 m-auto bg-gradient-to-b from-color-black to-color-blue">
             <h1 className="uppercase text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
-        Program
+       Your program
       </h1>
-      <h3 className="text-center mt-16 max-w-prose mx-auto">We collected all your favourite bands, in your own personal program below.</h3>
-      <h3 className="text-center mt-5 max-w-prose mx-auto">Want to remove a band from your favourites? Just press the heart and we'll remove them.</h3>
+      <p className="text-center mt-16 max-w-prose mx-auto">We collected all your favourite bands, in your own personal program below.</p>
+      <p className="text-center mt-5 max-w-prose mx-auto">Want to remove a band from your favourites? Just press the heart and we'll remove them.</p>
       <div className="flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row-reverse justify-center gap-2 mt-16">
           <div className=" flex justify-center w-64 sm:w-80 md:w-96 mx-auto lg:mx-0">
@@ -237,7 +237,7 @@ function Schedule({ schedule, selectedStage, selectedDay, selectedAct, bands, ha
           </div>} else {
 {/* ----------------------------------------- */}
             return <div key={stage}>
-            <h2 className="uppercase text-8xl text-center my-20 mt-40">{stage}</h2>
+            <h2 className="uppercase text-4xl text-center my-20 mt-40">{stage}</h2>
             <ObjectDay
               schedule={schedule}
               stage={...schedule[stage]}
@@ -281,7 +281,7 @@ function ObjectDay({stage, selectedDay, selectedAct, bands, handleDialogClickOpe
 {/* ----------------------------------------- */}
 if (selectedDay === (day) ){
   return <div  key={day}>
-        <h3 className="text-5xl uppercase text-center my-16" >{fullDayName(day)}</h3>
+        <h3 className="text-3xl uppercase text-center my-16" >{fullDayName(day)}</h3>
         <div key={day} className="bandList grid sm:grid-cols-1 md:grid-cols-2 md:mb-4 lg:grid-cols-3 ">
         <ObjectBand days={...stage[day]} selectedAct={selectedAct} bands={bands} handleDialogClickOpen={handleDialogClickOpen} favourites={favourites} />
         </div>
@@ -289,7 +289,7 @@ if (selectedDay === (day) ){
     } else { 
       {/* ----------------------------------------- */}
       return <div key={day}>
-        <h3 className="text-5xl uppercase text-center mt-28 mb-14" >{fullDayName(day)}</h3>
+        <h3 className="text-3xl uppercase text-center mt-20 mb-14" >{fullDayName(day)}</h3>
         <div key={day} className="bandList grid sm:grid-cols-1 md:grid-cols-2 md:mb-4 lg:grid-cols-3">
         <ObjectBand days={...stage[day]} selectedAct={selectedAct} bands={bands} handleDialogClickOpen={handleDialogClickOpen} favourites={favourites} />
         </div>
