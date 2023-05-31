@@ -47,69 +47,13 @@ export default function PersonalProgram({ schedule, bands }) {
     const currentLocal = localStorage.getItem("favourites");
 
     if (currentLocal !== null) {
-      const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
+      if (currentLocal === "[]") {
+        localStorage.removeItem("favourites");
+      } else {
+
+        const currentToArray = currentLocal.substring(0, currentLocal.length - 1).split(`/","`);
         setFavourites(currentToArray)
-        // console.log("curToArr", currentToArray);
-        // console.log("schedule?",schedule)
-        
-
-        // FROM HERE TO LINE 104 I LOOP THROUGH AND FIND THE TIME SLOTS THAT MATCHES THE LOCAL STORRAGE
-        // BUT I'M STUCK AND KIND FIGURE OUT A WAY TO MAKE A NEW ARRAY WITH THE SCENES, DAYS AND TIMESLOTS THAT WE GET OUT
-    //     for ( let k = 0; k < Object.keys(schedule).length; k++) {
-    //       let stage = "";
-
-    //       if ( k === 0) {
-    //         stage = "Midgard"
-    //       } else if (k === 1) {
-    //         stage = "Vanaheim"
-    //       } else if (k === 2) {
-    //         stage = "Jotunheim"
-    //       }
-
-    //     for (let i = 0; i < Object.keys(schedule[stage]).length ; i++) {
-    //       // console.log(i);
-
-    //       let day = "";
-
-    //       if (i === 0) {
-    //         day = "mon"
-    //         // console.log(day);
-    //       } else if ( i === 1) {
-    //         day = "tue"
-    //         // console.log(day);
-    //       } else if ( i === 2) {
-    //         day = "wed"
-    //         // console.log(day);
-    //       } else if ( i === 3) {
-    //         day = "thu"
-    //         // console.log(day);
-    //       } else if ( i === 4) {
-    //         day = "fri"
-    //         // console.log(day);
-    //       } else if ( i === 5) {
-    //         day = "sat"
-    //         // console.log(day);
-    //       } else if ( i === 6) {
-    //         day = "sun"
-    //         // console.log(day);
-    //       }
-          
-    //       // console.log("schedule", Object.keys(a1[day]).length);
-          
-    //       // console.log(day);
-    //       for (let j = 0; j < Object.keys(schedule[stage][day]).length -1; j++) {
-
-    //         // console.log(schedule[stage][day][j])
-    //         const there = Object.values(schedule[stage][day][j])
-    //         // console.log(there);
-    //         const that = there.some(item=>currentToArray.includes(item))
-    //         if ( that === true ) {
-    //           console.log("BINGO", schedule[stage][day].keys());
-
-    //       }
-    //       }
-    //     }
-    //   }
+      }
     }
     }, []);
 
@@ -119,12 +63,16 @@ export default function PersonalProgram({ schedule, bands }) {
     console.log("bandName", bandName)
     console.log("favourites", favourites)
     const filteredList = favourites.filter((band) => band !== bandName);
-    console.log("filteredList", filteredList)
+    console.log("filteredList", filteredList.length)
     setFavourites(filteredList)
-    const newUpdatedLocal = filteredList.map((band) => band + "/");
-    const NULJSON = JSON.stringify(newUpdatedLocal);
-    const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
-    localStorage.setItem("favourites", NULJSON2);
+    if (filteredList.length === 0) {
+      localStorage.removeItem("favourites");
+    } else {
+      const newUpdatedLocal = filteredList.map((band) => band + "/");
+      const NULJSON = JSON.stringify(newUpdatedLocal);
+      const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
+      localStorage.setItem("favourites", NULJSON2);
+    }
   }
 
 
