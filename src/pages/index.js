@@ -29,7 +29,10 @@ export default function MyApp({ bands }) {
             alt="FooFest logo"
           ></Image>
           <h1 className="text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl">FOOFEST</h1>
-          <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10"> Where amazing music meets Scandinavian Serenity in Dancing Lights! </h3>
+          <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10">
+            {" "}
+            Where amazing music meets Scandinavian Serenity in Dancing Lights!{" "}
+          </h3>
 
           <Button className="text-xs mt-20 rounded-none border-2 px-8 md:py-4 md:px-20 border-solid place-self-center border-color-yellow h-10 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-bold">
             <Anchor href="/bands">SECURE YOUR TICKETS HERE</Anchor>
@@ -37,7 +40,9 @@ export default function MyApp({ bands }) {
         </div>
         <div className="my-10 mx-auto h-0.5 w-4/5 max-w-3/4 bg-color-white"></div>
         <div className="flex flex-col gap-6">
-          <h3 className="mb-16 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl">EXPERIENCE BANDS SUCH AS:</h3>
+          <h3 className="mb-16 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+            EXPERIENCE BANDS SUCH AS:
+          </h3>
           <div className="flex flex-row flex-wrap gap-y-3 gap-x-4 sm:gap-x-8 md:gap-x-12 lg:gap-x-10  justify-center ">
             <BandList1 bands={bands} />
           </div>
@@ -76,7 +81,7 @@ export async function getServerSideProps() {
 
 function BandList1(props) {
   const bandsToShow = props.bands.slice(5, 7);
-  return bandsToShow.map((band) => (
+  return bandsToShow.map(band => (
     <Band
       key={band.name}
       {...band}
@@ -85,7 +90,7 @@ function BandList1(props) {
 }
 function BandList2(props) {
   const bandsToShow = props.bands.slice(2, 5);
-  return bandsToShow.map((band) => (
+  return bandsToShow.map(band => (
     <Band2
       key={band.name}
       {...band}
@@ -95,7 +100,7 @@ function BandList2(props) {
 
 function BandList3(props) {
   const bandsToShow = props.bands.slice(7, 12);
-  return bandsToShow.map((band) => (
+  return bandsToShow.map(band => (
     <Band3
       key={band.name}
       {...band}

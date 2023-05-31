@@ -78,7 +78,8 @@ a > *:hover {
   background-color: #f9f01f;
 }
 
-.css-2ptc2y.Mui-selected {
+.css-2ptc2y.Mui-selected,
+.css-17liyhh.Mui-selected {
   color: #f9f01f;
 }
 
