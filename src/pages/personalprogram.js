@@ -3,7 +3,6 @@ import Anchor from "@/components/Anchor";
 import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
 import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
 import Button from "@mui/material/Button";
-import Navbar from "@/components/Navbar";
 import React from "react";
 import Favorite from "@mui/icons-material/Favorite";
 import Dialog from '@mui/material/Dialog';
@@ -12,7 +11,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState, useEffect } from "react";
-import { ButtonBase, Skeleton, TextField, Checkbox } from "@mui/material";
+import { Skeleton, TextField, Checkbox } from "@mui/material";
 import apiConfig from "../../apiConfig";
 
 export default function PersonalProgram({ schedule, bands }) {
@@ -22,11 +21,9 @@ export default function PersonalProgram({ schedule, bands }) {
   const [selectedStage, setSelectedStage] = useState(null);
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedAct, setSelectedAct] = useState("");
-  // const [filteredSchedule, setFilteredSchedule] = useState({"Midgard": {}, "Vanaheim": {}, "Jotunheim":{} })
-  // const [favStages, setFavStages] = useState([])
   const [showTime, setShowTime] = useState(false)
 
-//HAndle the dialog when wanting to remove from favourite
+  //Handle the dialog when wanting to remove from favourite
   const handleDialogClickOpen = (band) => {
     console.log(band);
     setDialogOpen([true, band]);
@@ -35,8 +32,6 @@ export default function PersonalProgram({ schedule, bands }) {
     setDialogOpen([false, ""]);
   };
   const handleDialogRemove = () => {
-    console.log("handleDialogRemove")
-    console.log("band", dialogOpen[1])
     removeBand(dialogOpen[1])
     setDialogOpen([false, ""]);
   };
@@ -58,22 +53,20 @@ export default function PersonalProgram({ schedule, bands }) {
     }, []);
 
   //Function that listens to favourites and removes from list if they are disabled from person program
-  function removeBand(bandName) {
-    console.log("TheFiltering")
-    console.log("bandName", bandName)
-    console.log("favourites", favourites)
-    const filteredList = favourites.filter((band) => band !== bandName);
-    console.log("filteredList", filteredList.length)
-    setFavourites(filteredList)
-    if (filteredList.length === 0) {
-      localStorage.removeItem("favourites");
-    } else {
-      const newUpdatedLocal = filteredList.map((band) => band + "/");
-      const NULJSON = JSON.stringify(newUpdatedLocal);
-      const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
-      localStorage.setItem("favourites", NULJSON2);
+    function removeBand(bandName) {
+      const filteredList = favourites.filter((band) => band !== bandName)
+      setFavourites(filteredList);
+
+      // Send new list to local storage
+      if (filteredList.length === 0) {
+        localStorage.removeItem("favourites")
+      } else {
+        const newList = filteredList.map((band) => band + "/")
+        const newListJSON = JSON.stringify(newList)
+        const newListJSON2 = newListJSON.substring(2, newListJSON.lastIndexOf(`"]`))
+        localStorage.setItem("favourites", newListJSON2)
+      }
     }
-  }
 
 
     function handleStageClick(stage) {
@@ -82,12 +75,10 @@ export default function PersonalProgram({ schedule, bands }) {
 
   function handleDayClick(day) {
     setSelectedDay(day);
-    // console.log(day);
   }
 
   function handleChange(e) {
     setSelectedAct(e.target.value);
-    // console.log(e.target.value);
   }
 
 
@@ -248,11 +239,6 @@ function ObjectBand({ days, selectedAct, bands, handleDialogClickOpen, favourite
 
 const [checked, setChecked] = React.useState(true)
 
-  // const handleChange = () => {
-  //   setChecked(true);
-  // };
-  
-
   const bandSlug = (name) => {
     for (let i = 0; i < bands.length; i++) {
       if (name === bands[i].name) {
@@ -307,7 +293,6 @@ const [checked, setChecked] = React.useState(true)
     
 export async function getServerSideProps() {
   const apiUrl = apiConfig[process.env.NODE_ENV].apiUrl;
-  {/* const band = context.params.band; */}
 
   {/* Fetch post data from API using the ID parameter */}
 
