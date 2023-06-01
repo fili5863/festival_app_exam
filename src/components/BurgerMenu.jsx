@@ -16,18 +16,18 @@ export default function TemporaryDrawer() {
     right: false,
   });
 
-  const toggleDrawer = anchor => event => {
+  const toggleDrawer = (anchor) => (event) => {
     if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
     setOpened(!opened);
-    setState(prevState => ({
+    setState((prevState) => ({
       ...prevState,
       [anchor]: !prevState[anchor],
     }));
   };
 
-  const list = anchor => (
+  const list = (anchor) => (
     <Box
       className="flex flex-col justify-items-center"
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -36,7 +36,7 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor)}
     >
       <List>
-        {["Program", "Tickets", "News", "Volunteer"].map(text => (
+        {["Program", "Tickets"].map((text) => (
           <ListItem
             className="flex"
             key={text}
@@ -55,7 +55,7 @@ export default function TemporaryDrawer() {
 
   return (
     <div className="flex">
-      {["right"].map(anchor => (
+      {["right"].map((anchor) => (
         <Fragment key={anchor}>
           <Example
             toggleDrawer={toggleDrawer(anchor)}
