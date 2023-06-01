@@ -4,7 +4,7 @@ import Image from "next/image";
 import Logo from "../components/svgs/logo.png";
 import Button from "@mui/material/Button";
 import apiConfig from "../../apiConfig";
-
+import { useRouter } from "next/router";
 // import App from "next/app";
 // import Navbar from "@/components/Navbar";
 // import Checkbox from "@mui/material/Checkbox";
@@ -15,6 +15,11 @@ import apiConfig from "../../apiConfig";
 
 export default function MyApp({ bands }) {
   console.log(bands);
+  const router = useRouter();
+
+  function secureTickets() {
+    router.push("https://booking-flow.vercel.app/");
+  }
   return (
     <>
       <Head>
@@ -29,10 +34,16 @@ export default function MyApp({ bands }) {
             alt="FooFest logo"
           ></Image>
           <h1 className="text-center text-6xl sm:text-7xl md:text-8xl lg:text-9xl">FOOFEST</h1>
-          <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10"> Where amazing music meets Scandinavian Serenity in Dancing Lights! </h3>
+          <h3 className="text-center uppercase text-base sm:text-2xl md:text-3xl lg:text-4xl text-color-white mt-10 leading-10">
+            {" "}
+            Where amazing music meets Scandinavian Serenity in Dancing Lights!{" "}
+          </h3>
 
-          <Button className="text-xs mt-20 rounded-none border-2 px-8 md:py-4 md:px-20 border-solid place-self-center border-color-yellow h-10 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-bold">
-            <Anchor href="/bands">SECURE YOUR TICKETS HERE</Anchor>
+          <Button
+            className="text-xs mt-20 rounded-none border-2 px-8 md:py-4 md:px-20 border-solid place-self-center border-color-yellow h-10 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-bold"
+            onClick={secureTickets}
+          >
+            SECURE YOUR TICKETS HERE
           </Button>
         </div>
         <div className="my-10 mx-auto h-0.5 w-4/5 max-w-3/4 bg-color-white"></div>
