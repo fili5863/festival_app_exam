@@ -36,19 +36,27 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor)}
     >
       <List>
-        {["Program", "Tickets"].map((text) => (
-          <ListItem
-            className="flex"
-            key={text}
-            disablePadding
-          >
-            <ListItemButton>
-              <Anchor href={`../${text.toLowerCase()}`}>
-                <p className="navHover text-3xl font-bold uppercase text-color-white">{text}</p>
-              </Anchor>
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem
+          className="flex"
+          disablePadding
+        >
+          <ListItemButton>
+            <Anchor href={`../program`}>
+              <p className="navHover text-3xl font-bold uppercase text-color-white">Program</p>
+            </Anchor>
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem
+          className="flex"
+          disablePadding
+        >
+          <ListItemButton>
+            <Anchor href={`https://booking-flow.vercel.app/`}>
+              <p className="navHover text-3xl font-bold uppercase text-color-white">Tickets</p>
+            </Anchor>
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
