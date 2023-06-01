@@ -35,8 +35,6 @@ export default function PersonalProgram({ schedule, bands }) {
     setDialogOpen([false, ""]);
   };
   const handleDialogRemove = () => {
-    console.log("handleDialogRemove")
-    console.log("band", dialogOpen[1])
     removeBand(dialogOpen[1])
     setDialogOpen([false, ""]);
   };
@@ -58,22 +56,20 @@ export default function PersonalProgram({ schedule, bands }) {
     }, []);
 
   //Function that listens to favourites and removes from list if they are disabled from person program
-  function removeBand(bandName) {
-    console.log("TheFiltering")
-    console.log("bandName", bandName)
-    console.log("favourites", favourites)
-    const filteredList = favourites.filter((band) => band !== bandName);
-    console.log("filteredList", filteredList.length)
-    setFavourites(filteredList)
-    if (filteredList.length === 0) {
-      localStorage.removeItem("favourites");
-    } else {
-      const newUpdatedLocal = filteredList.map((band) => band + "/");
-      const NULJSON = JSON.stringify(newUpdatedLocal);
-      const NULJSON2 = NULJSON.substring(2, NULJSON.lastIndexOf(`"]`));
-      localStorage.setItem("favourites", NULJSON2);
+    function removeBand(bandName) {
+      const filteredList = favourites.filter((band) => band !== bandName)
+      setFavourites(filteredList);
+
+      // Send new list to local storage
+      if (filteredList.length === 0) {
+        localStorage.removeItem("favourites")
+      } else {
+        const newList = filteredList.map((band) => band + "/")
+        const newListJSON = JSON.stringify(newList)
+        const newListJSON2 = newListJSON.substring(2, newListJSON.lastIndexOf(`"]`))
+        localStorage.setItem("favourites", newListJSON2)
+      }
     }
-  }
 
 
     function handleStageClick(stage) {
