@@ -3,7 +3,6 @@ import Anchor from "@/components/Anchor";
 import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
 import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
 import Button from "@mui/material/Button";
-import Navbar from "@/components/Navbar";
 import React from "react";
 import Favorite from "@mui/icons-material/Favorite";
 import Dialog from '@mui/material/Dialog';
@@ -12,7 +11,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState, useEffect } from "react";
-import { ButtonBase, Skeleton, TextField, Checkbox } from "@mui/material";
+import { Skeleton, TextField, Checkbox } from "@mui/material";
 import apiConfig from "../../apiConfig";
 
 export default function PersonalProgram({ schedule, bands }) {
@@ -22,11 +21,9 @@ export default function PersonalProgram({ schedule, bands }) {
   const [selectedStage, setSelectedStage] = useState(null);
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedAct, setSelectedAct] = useState("");
-  // const [filteredSchedule, setFilteredSchedule] = useState({"Midgard": {}, "Vanaheim": {}, "Jotunheim":{} })
-  // const [favStages, setFavStages] = useState([])
   const [showTime, setShowTime] = useState(false)
 
-//HAndle the dialog when wanting to remove from favourite
+  //Handle the dialog when wanting to remove from favourite
   const handleDialogClickOpen = (band) => {
     console.log(band);
     setDialogOpen([true, band]);
@@ -78,12 +75,10 @@ export default function PersonalProgram({ schedule, bands }) {
 
   function handleDayClick(day) {
     setSelectedDay(day);
-    // console.log(day);
   }
 
   function handleChange(e) {
     setSelectedAct(e.target.value);
-    // console.log(e.target.value);
   }
 
 
@@ -244,11 +239,6 @@ function ObjectBand({ days, selectedAct, bands, handleDialogClickOpen, favourite
 
 const [checked, setChecked] = React.useState(true)
 
-  // const handleChange = () => {
-  //   setChecked(true);
-  // };
-  
-
   const bandSlug = (name) => {
     for (let i = 0; i < bands.length; i++) {
       if (name === bands[i].name) {
@@ -303,7 +293,6 @@ const [checked, setChecked] = React.useState(true)
     
 export async function getServerSideProps() {
   const apiUrl = apiConfig[process.env.NODE_ENV].apiUrl;
-  {/* const band = context.params.band; */}
 
   {/* Fetch post data from API using the ID parameter */}
 
