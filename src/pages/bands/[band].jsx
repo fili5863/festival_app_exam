@@ -146,9 +146,7 @@ export default function Product({ bandData, scheduleData }) {
 
   // console.log(bandData);
   console.log("scheduleData", scheduleData);
-  const logoUrl = bandData.logo.startsWith("https://")
-    ? bandData.logo
-    : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
+  const logoUrl = bandData.logo.startsWith("https://") ? bandData.logo : `https://scratched-bronze-lingonberry.glitch.me/logos/${bandData.logo}`;
   // matching act is initialized as null
   let matchingAct = null; // Initialize a variable to store the matching act
 
@@ -223,7 +221,7 @@ export default function Product({ bandData, scheduleData }) {
         <title>Foofest | {bandData.name}</title>
       </Head>
       <div className="max-w-screen-xl m-auto">
-        <p className="text-color-white">
+        {/* <p className="text-color-white">
           Favourites: <span>{favourites}</span>
         </p>
         <button
@@ -231,7 +229,7 @@ export default function Product({ bandData, scheduleData }) {
           onClick={() => console.log(checked)}
         >
           Is Checked? -
-        </button>
+        </button> */}
         {/* <button className="text-color-white" onClick={() => console.log(favourites)}>
           Band name
         </button> */}
@@ -263,9 +261,7 @@ export default function Product({ bandData, scheduleData }) {
           )}
           {matchingAct.cancelled === true ? (
             <div className="grid items-center justify-items-center ">
-              <h2 className="w-full uppercase text-center bg-color-red z-40 grid col-start-1 row-start-1 text-color-blue">
-                Cancelled
-              </h2>
+              <h2 className="w-full uppercase text-center bg-color-red z-40 grid col-start-1 row-start-1 text-color-blue">Cancelled</h2>
               <Image
                 width={100}
                 height={100}
