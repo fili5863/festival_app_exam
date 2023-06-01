@@ -62,7 +62,7 @@ export function SearchedBands({
         .filter(
           band =>
             band.act.toLowerCase() !== "break" &&
-            (!selectedAct || band.act.toLowerCase().includes(selectedAct))
+            (!selectedAct || band.act.toLowerCase().includes(selectedAct.toLowerCase()))
         )
         .map(band => (
           /* --------------------------------------- */
