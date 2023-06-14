@@ -2,11 +2,11 @@ import React from "react";
 import { ObjectDay } from "@/components/ObjectDay";
 import { SearchedBands } from "@/components/SearchedBands";
 
-export function Schedule({ schedule, selectedStage, selectedDay, selectedAct, bands, LocalStorageFavourite, localChecked }) {
+export function Schedule({ schedule, selectedStage, selectedDay, selectedAct, selectedFav, bands, LocalStorageFavourite, localChecked, favourites }) {
 
   if (selectedAct !== "") {
     return <SearchedBands bands={bands} schedule={schedule} selectedAct={selectedAct} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} />;
-  }
+  } 
 
   return (
     <div className="schedule">
@@ -22,9 +22,12 @@ export function Schedule({ schedule, selectedStage, selectedDay, selectedAct, ba
                 stage={...schedule[stage]}
                 selectedDay={selectedDay}
                 selectedAct={selectedAct}
+                selectedFav={selectedFav}
                 bands={bands}
                 LocalStorageFavourite={LocalStorageFavourite}
-                localChecked={localChecked} />
+                localChecked={localChecked} 
+                favourites={favourites}/>
+                
             </div>;
           } else {
             /* --------------------------------------- */
@@ -35,9 +38,11 @@ export function Schedule({ schedule, selectedStage, selectedDay, selectedAct, ba
                 stage={...schedule[stage]}
                 selectedDay={selectedDay}
                 selectedAct={selectedAct}
+                selectedFav={selectedFav}
                 bands={bands}
                 LocalStorageFavourite={LocalStorageFavourite}
-                localChecked={localChecked} />
+                localChecked={localChecked} 
+                favourites={favourites}/>
             </div>;
           }
         })}

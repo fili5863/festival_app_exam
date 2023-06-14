@@ -2,7 +2,7 @@ import React from "react";
 import { ObjectBand } from "../components/ObjectBand";
 
 
-export function ObjectDay({ stage, selectedDay, selectedAct, bands, LocalStorageFavourite, localChecked }) {
+export function ObjectDay({ stage, selectedDay, selectedAct, selectedFav, bands, LocalStorageFavourite, localChecked, favourites }) {
 
   const fullDayName = (day) => {
     if (day === "mon") {
@@ -35,7 +35,7 @@ export function ObjectDay({ stage, selectedDay, selectedAct, bands, LocalStorage
         return <div key={day}>
         
         <div key={day} className="bandList grid sm:grid-cols-1 md:grid-cols-2 md:mb-4 lg:grid-cols-3 ">
-        <ObjectBand days={...stage[day]} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} />
+        <ObjectBand days={...stage[day]} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} favourites={favourites} selectedFav={selectedFav}/>
         </div>
         </div>;
       } else {
@@ -43,7 +43,7 @@ export function ObjectDay({ stage, selectedDay, selectedAct, bands, LocalStorage
         return <div key={day}>
         <h3 className=" sm:mt-20 md:text-3xl lg:text-5xl uppercase text-center md:mt-20 lg:mt-28 mb-7 md:mb-10 lg:mb-14">{fullDayName(day)}</h3>
         <div key={day} className="bandList grid sm:grid-cols-1 md:grid-cols-2 md:mb-4 lg:grid-cols-3">
-        <ObjectBand days={...stage[day]} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} />
+        <ObjectBand days={...stage[day]} selectedAct={selectedAct} bands={bands} LocalStorageFavourite={LocalStorageFavourite} localChecked={localChecked} favourites={favourites} selectedFav={selectedFav}/>
         </div>
         </div>;
       }
