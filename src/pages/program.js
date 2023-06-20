@@ -9,18 +9,21 @@ import { useEffect, useState } from "react";
 // import { BadgeRounded } from "@mui/icons-material";
 import { FilterbuttonsDay } from "../components/FilterbuttonsDay";
 import { FilterbuttonsStage } from "../components/FilterbuttonsStage";
+import { FilterbuttonFav } from "../components/FilterbuttonFav";
+import { FilterbuttonsChar } from "../components/FilterbuttonsChar";
 import { Schedule } from "../components/Schedule";
 import apiConfig from "../../apiConfig";
-import Image from "next/image";
 
 export default function Program({ schedule, bands }) {
+  /* States til de forskellige filterknapper og søgefunktion */
   const [selectedStage, setSelectedStage] = useState(null);
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedAct, setSelectedAct] = useState("");
   const [selectedFav, setSelectedFav] = useState(false);
+  const [selectedChar, setSelectedChar] = useState("");
+  /* States til Jonas' favorite funktioner */
   const [snackOpen, setSnackOpen] = useState([false, ""]);
   const [favourites, setFavourites] = useState();
-  const [showTime, setShowTime] = useState(false);
 
   useEffect(() => {
     const currentLocal = localStorage.getItem("favourites");
@@ -45,18 +48,6 @@ export default function Program({ schedule, bands }) {
       localStorage.removeItem("favourites");
     }
   }, [favourites]);
-
-  function handleStageClick(stage) {
-    setSelectedStage(stage);
-  }
-
-  function handleDayClick(day) {
-    setSelectedDay(day);
-  }
-
-  function handleChange(e) {
-    setSelectedAct(e.target.value);
-  }
 
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -126,8 +117,6 @@ export default function Program({ schedule, bands }) {
     if (favourites !== undefined) {
       for (let i = 0; i < favourites.length; i++) {
         if (favourites[i].substring(0, favourites[i].lastIndexOf("/")) === band) {
-          // console.log(favourites[i].substring(0, favourites[i].lastIndexOf("/")));
-          // console.log(band);
           return true;
         }
       }
@@ -142,7 +131,6 @@ export default function Program({ schedule, bands }) {
 
   function handleDayClick(day) {
     setSelectedDay(day);
-    // console.log(day);
   }
 
   function handleChange(e) {
@@ -152,6 +140,11 @@ export default function Program({ schedule, bands }) {
   function handleFavClick() {
     setSelectedFav(!selectedFav);
     console.log(selectedFav);
+  }
+
+  function handleLetterClick(char) {
+    console.log(char);
+    setSelectedChar(char);
   }
 
   return (
@@ -203,17 +196,23 @@ export default function Program({ schedule, bands }) {
               selectedAct={selectedAct}
             />
           </div>
-
-          <FilterbuttonsDay
+          <div className="flex justify-center flex-wrap gap-10">
+            <FilterbuttonsDay
+              schedule={schedule}
+              onClick={handleDayClick}
+              selectedAct={selectedAct}
+              selectedDay={selectedDay}
+            />
+            <FilterbuttonFav
+              schedule={schedule}
+              onClick={handleFavClick}
+              selectedFav={selectedFav}
+            />
+          </div>
+          <FilterbuttonsChar
             schedule={schedule}
-            onClick={handleDayClick}
-            selectedAct={selectedAct}
-            selectedDay={selectedDay}
-          />
-          <FilterbuttonFav
-            schedule={schedule}
-            onClick={handleFavClick}
-            selectedFav={selectedFav}
+            onClick={handleLetterClick}
+            selectedChar={selectedChar}
           />
         </div>
         <Schedule
@@ -222,6 +221,7 @@ export default function Program({ schedule, bands }) {
           selectedDay={selectedDay}
           selectedAct={selectedAct}
           selectedFav={selectedFav}
+          selectedChar={selectedChar}
           bands={bands}
           LocalStorageFavourite={LocalStorageFavourite}
           localChecked={localChecked}
@@ -234,28 +234,13 @@ export default function Program({ schedule, bands }) {
           message={snackOpen[1]}
           action={action}
         />
-        ;
       </div>
     </>
   );
 }
 
-function FilterbuttonFav({ selectedFav, onClick }) {
-  return (
-    <Button
-      className={`rounded-none font-sans font-bold border-2 border-solid place-self-center border-color-yellow h-10 w-fit hover:bg-color-yellow hover:text-color-black active:bg-color-yellow ${
-        selectedFav === false ? "text-color-yellow" : "bg-color-yellow text-color-black"
-      }`}
-      onClick={() => onClick(!selectedFav)}
-    >
-      Show favorites
-    </Button>
-  );
-}
-
 export async function getServerSideProps() {
   const apiUrl = apiConfig[process.env.NODE_ENV].apiUrl;
-  // const band = context.params.band;
 
   // Fetch post data from API using the ID parameter
 
