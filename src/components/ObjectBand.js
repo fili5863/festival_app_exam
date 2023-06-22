@@ -56,7 +56,6 @@ export function ObjectBand({
     .filter(
       band =>
         band.act.toLowerCase() !== "break" &&
-        (!selectedAct || band.act.toLowerCase().includes(selectedAct)) &&
         (!selectedFav || favourites.includes(band.act + "/")) &&
         band.act.startsWith(selectedChar.toUpperCase())
     )
@@ -105,7 +104,11 @@ export function ObjectBand({
               {band.cancelled ? "Cancelled" : ""}
             </span>
           ) : (
-            <span className="timeslot text-color-black font-sans uppercase font-bold pt-2 place-self-center w-max px-6 mx-6 mb-20 py-1 md:text-xl lg:text-xl text-center bg-color-white lg:opacity-0 md:transition ">
+            <span
+              className={`timeslot text-color-black font-sans uppercase font-bold pt-2 place-self-center w-max px-6 mx-6 mb-20 py-1 md:text-xl lg:text-xl text-center bg-color-white ${
+                selectedFav ? "" : "lg:opacity-0 md:transition"
+              }`}
+            >
               {band.start} - {band.end}
             </span>
           )}
