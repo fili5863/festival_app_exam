@@ -1,11 +1,13 @@
 import Button from "@mui/material/Button";
 import React from "react";
 
-export function FilterbuttonsChar({ selectedChar, onClick }) {
+export function FilterbuttonsChar({ selectedChar, onClick, selectedAct }) {
+  if (selectedAct !== "") {
+    return;
+  }
   const alphabet = "abcdefghijklmnopqrstuwxyz".split("");
-  console.log(alphabet);
   return (
-    <div className="flex flex-wrap justify-center max-w-4xl m-auto">
+    <div className="flex flex-wrap justify-center max-w-4xl m-auto px-3">
       <Button
         className={`rounded-none font-sans font-bold border-2 border-solid place-self-center border-color-yellow h-10 w-12 hover:bg-color-yellow hover:text-color-black active:bg-color-yellow ${
           selectedChar === "" ? "bg-color-yellow text-color-black" : "text-color-yellow"

@@ -139,11 +139,9 @@ export default function Program({ schedule, bands }) {
 
   function handleFavClick() {
     setSelectedFav(!selectedFav);
-    console.log(selectedFav);
   }
 
-  function handleLetterClick(char) {
-    console.log(char);
+  function handleCharClick(char) {
     setSelectedChar(char);
   }
 
@@ -204,14 +202,14 @@ export default function Program({ schedule, bands }) {
               selectedDay={selectedDay}
             />
             <FilterbuttonFav
-              schedule={schedule}
               onClick={handleFavClick}
+              selectedAct={selectedAct}
               selectedFav={selectedFav}
             />
           </div>
           <FilterbuttonsChar
-            schedule={schedule}
-            onClick={handleLetterClick}
+            onClick={handleCharClick}
+            selectedAct={selectedAct}
             selectedChar={selectedChar}
           />
         </div>
