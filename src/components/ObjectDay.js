@@ -34,12 +34,12 @@ export function ObjectDay({ stage, selectedDay, selectedAct, selectedFav, select
         {selectedDay !== (day) && selectedChar === "" ? <h3 className=" sm:mt-20 md:text-3xl lg:text-5xl uppercase text-center md:mt-20 lg:mt-28 mb-7 md:mb-10 lg:mb-14">{fullDayName(day)}</h3> : ""}
         <div key={day} className="bandList grid sm:grid-cols-1 md:grid-cols-2 md:mb-4 lg:grid-cols-3">
         <ObjectBand 
-        days={...stage[day]} 
-        selectedAct={selectedAct} 
-        bands={bands} 
-        LocalStorageFavourite={LocalStorageFavourite} 
-        localChecked={localChecked} 
-        favourites={favourites} 
+        days={...stage[day]}
+        selectedAct={selectedAct}
+        bands={bands}
+        LocalStorageFavourite={LocalStorageFavourite}
+        localChecked={localChecked}
+        favourites={favourites}
         selectedFav={selectedFav}
         selectedChar={selectedChar}/>
         </div>
